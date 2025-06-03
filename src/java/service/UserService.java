@@ -17,14 +17,14 @@ import java.sql.Connection;
  *
  * @author Admin
  */
-public class UserService {
+public class UserService implements IUserService{
 
     private UserDAO userDAO;
 
     public UserService() {
         userDAO = new UserDAO();
     }
-
+    
     public void addUser(User user) throws SQLException {
         userDAO.insertUser(user);
     }
@@ -45,13 +45,7 @@ public class UserService {
         return userDAO.selectAllUsers();
     }
 
-//    public void updateUserStatus(int id, boolean status) throws SQLException {
-//        String query = "UPDATE Users SET status = ? WHERE id = ?";
-//        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(query)) {
-//
-//            ptm.setBoolean(1, status);
-//            ptm.setInt(2, id);
-//            ptm.executeUpdate();
-//        }
-//    }
+    public void updateUserStatus(int id, boolean status) throws SQLException {
+        userDAO.updateStatus(id, status);
+    }
 }

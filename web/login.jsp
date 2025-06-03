@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@page import="java.net.URLDecoder"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="jakarta.servlet.http.Cookie" %>
 <%@ page import="jakarta.servlet.http.HttpServletRequest" %>
@@ -14,9 +15,9 @@
     if (cookies != null) {
         for (Cookie c : cookies) {
             if ("username".equals(c.getName())) {
-                savedUser = c.getValue();
+                savedUser = URLDecoder.decode(c.getValue(), "UTF-8");
             } else if ("password".equals(c.getName())) {
-                savedPass = c.getValue();
+                savedPass = URLDecoder.decode(c.getValue(), "UTF-8");
             }
         }
     }

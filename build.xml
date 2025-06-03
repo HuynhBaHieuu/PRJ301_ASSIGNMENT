@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="SP25_Demo_MainController" default="default" basedir=".">
-    <description>Builds, tests, and runs the project SP25_Demo_MainController.</description>
+<project name="PRJ_Project" default="default" basedir=".">
+    <description>Builds, tests, and runs the project PRJ_Project.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 

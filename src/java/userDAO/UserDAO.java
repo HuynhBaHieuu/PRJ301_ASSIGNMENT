@@ -22,12 +22,13 @@ import java.sql.Date;
 public class UserDAO implements IUserDAO {
 
     private static final String LOGIN2 = "SELECT id, userName, role FROM [Users] WHERE userName=? AND password=?";
-    private static final String INSERT_USER = "INSERT INTO Users (username, email, country, role, status, password, dob) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_USER = "INSERT INTO Users (username, email, country, role, status, password, phone) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM Users WHERE id = ?";
-    private static final String UPDATE_USER = "UPDATE Users SET username = ?, email = ?, country = ?, role = ?, status = ?, password = ?, dob = ? WHERE id = ?";
+    private static final String UPDATE_USER = "UPDATE Users SET username = ?, email = ?, country = ?, role = ?, status = ?, password = ?, dob = ?, phone = ? WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Users";
     private static final String SEARCH_USERS = "SELECT * FROM Users WHERE username LIKE ?";
     private static final String DELETE_USER = "DELETE FROM Users WHERE id = ?";
+    private static final String UPDATE_STATUS = "UPDATE Users SET status = ? WHERE id = ?";
 
     public static User checkLogin(String username, String password) {
         User us = null;
@@ -65,9 +66,11 @@ public class UserDAO implements IUserDAO {
                         rs.getString("email"),
                         rs.getString("country"),
                         rs.getString("role"),
-                        Boolean.parseBoolean(rs.getString("status")),
+                        //                        Boolean.parseBoolean(rs.getString("status")),
+                        rs.getInt("status") == 1,
                         rs.getString("password"),
-                        rs.getDate("dob")
+                        rs.getDate("dob"),
+                        rs.getString("phone")
                 );
                 users.add(u);
             }
@@ -88,7 +91,8 @@ public class UserDAO implements IUserDAO {
             ptm.setString(4, user.getRole());
             ptm.setBoolean(5, user.getStatus());
             ptm.setString(6, user.getPassword());
-            ptm.setDate(7, user.getDob());
+//            ptm.setDate(7, user.getDob());
+            ptm.setString(7, user.getPhone());
             ptm.executeUpdate();
         }
     }
@@ -108,9 +112,11 @@ public class UserDAO implements IUserDAO {
                         rs.getString("email"),
                         rs.getString("country"),
                         rs.getString("role"),
-                        Boolean.parseBoolean(rs.getString("status")),
+                        //                        Boolean.parseBoolean(rs.getString("status")),
+                        rs.getInt("status") == 1,
                         rs.getString("password"),
-                        rs.getDate("dob")
+                        rs.getDate("dob"),
+                        rs.getString("phone")
                 );
             }
 
@@ -132,9 +138,11 @@ public class UserDAO implements IUserDAO {
                         rs.getString("email"),
                         rs.getString("country"),
                         rs.getString("role"),
-                        Boolean.parseBoolean(rs.getString("status")),
+                        //                        Boolean.parseBoolean(rs.getString("status")),
+                        rs.getInt("status") == 1,
                         rs.getString("password"),
-                        rs.getDate("dob")
+                        rs.getDate("dob"),
+                        rs.getString("phone")
                 );
                 users.add(u);
             }
@@ -168,11 +176,20 @@ public class UserDAO implements IUserDAO {
             ptm.setBoolean(5, user.getStatus());
             ptm.setString(6, user.getPassword());
             ptm.setDate(7, user.getDob());
-            ptm.setInt(8, user.getId());
+            ptm.setString(8, user.getPhone());
+            ptm.setInt(9, user.getId());
 
             rowUpdated = ptm.executeUpdate() > 0;
         }
         return rowUpdated;
+    }
+
+    public void updateStatus(int id, boolean status) throws SQLException {
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(UPDATE_STATUS)) {
+            ps.setInt(1, status ? 1 : 0);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        }
     }
 
     public static void main(String[] args) throws SQLException {
@@ -185,28 +202,29 @@ public class UserDAO implements IUserDAO {
             System.out.println("Login failed.");
         }
         //searchUser
-        User user1 = dao.selectUser(1);
+        User user1 = dao.selectUser(2);
         System.out.println("Username: " + user1.getUsername());
         //insert
-//        User user2 = new User(0, "huynhbahieu", "hieu123@gmail.com", "vietnam", "Admin", true, "abc@123", Date.valueOf("2005-01-07"));
+//        User user2 = new User(0, "huynhbahieu", "hieu123@gmail.com", "vietnam", "Admin", true, "abc@123", Date.valueOf("2005-01-07"),"0123456789");
 //        dao.insertUser(user2);
         //selectAllUser
-        List<User> user3 = dao.selectAllUsers();
-        if (user3.isEmpty()) {
-            System.out.println("Not found any user in system.");
-        } else {
-            for (User users : user3) {
-                System.out.println("ID: " + users.getId());
-                System.out.println("Username: " + users.getUsername());
-                System.out.println("Email: " + users.getEmail());
-                System.out.println("Country: " + users.getCountry());
-                System.out.println("Role: " + users.getRole());
-                System.out.println("Status: " + users.getStatus());
-                System.out.println("Password: " + users.getPassword());
-                System.out.println("DOB: " + users.getDob());
-                System.out.println("-------------------------");
-            }
-        }
+//        List<User> user3 = dao.selectAllUsers();
+//        if (user3.isEmpty()) {
+//            System.out.println("Not found any user in system.");
+//        } else {
+//            for (User users : user3) {
+//                System.out.println("ID: " + users.getId());
+//                System.out.println("Username: " + users.getUsername());
+//                System.out.println("Email: " + users.getEmail());
+//                System.out.println("Country: " + users.getCountry());
+//                System.out.println("Role: " + users.getRole());
+//                System.out.println("Status: " + users.getStatus());
+//                System.out.println("Password: " + users.getPassword());
+//                System.out.println("DOB: " + users.getDob());
+//                System.out.println("Phone: " + users.getPhone());
+//                System.out.println("-------------------------");
+//            }
+//        }
 //        //delete
 //        try {
 //            boolean result = dao.deleteUser(3);  // xóa user có id = 3
@@ -222,14 +240,15 @@ public class UserDAO implements IUserDAO {
 //        try {
 //            // Tạo 1 user mới với ID tồn tại, thay đổi thông tin
 //            User updateUser = new User(
-//                    1,
+//                    8,
 //                    "updatedname",
 //                    "updatedemail@gmail.com",
 //                    "USA",
 //                    "User",
 //                    false,
 //                    "newpass123",
-//                    Date.valueOf("2000-12-25")
+//                    Date.valueOf("2000-12-25"),
+//                    "0000111123"
 //            );
 //
 //            boolean updated = dao.updateUser(updateUser);

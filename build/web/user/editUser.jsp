@@ -80,6 +80,12 @@
                         <input type="date" name="dob" value="<c:out value='${user.dob}' />" required/>
                     </td>
                 </tr>
+                <tr>
+                    <th>Phone number:</th>
+                    <td>
+                        <input type="text" name="phone" value="<c:out value='${user.phone}' />" required/>
+                    </td>
+                </tr>
 
 
                 <td colspan="2" align="center">

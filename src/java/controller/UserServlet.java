@@ -88,12 +88,13 @@ public class UserServlet extends HttpServlet {
         String role = request.getParameter("role");
         boolean status = request.getParameter("status") != null;
         String password = request.getParameter("password");
-        Date dob = Date.valueOf(request.getParameter("dob"));
+//        Date dob = Date.valueOf(request.getParameter("dob"));
+        String phone = request.getParameter("phone");
 
-        if (username == null || email == null || country == null || password == null || dob == null) {
+        if (username == null || email == null || country == null || password == null || phone == null) {
             throw new ServletException();
         }
-        User newUser = new User(0, username, email, country, role, status, password, dob);
+        User newUser = new User(0, username, email, country, role, status, password, phone);
         userService.addUser(newUser);
         List<User> listUser = userService.getAllUsers();
         request.setAttribute("listUser", listUser);
@@ -110,10 +111,11 @@ public class UserServlet extends HttpServlet {
         boolean status = request.getParameter("status") != null;
         String password = request.getParameter("password");
         Date dob = Date.valueOf(request.getParameter("dob"));
-        if (username == null || email == null || country == null || password == null || dob == null) {
+        String phone = request.getParameter("phone");
+        if (username == null || email == null || country == null || password == null || dob == null || phone  == null) {
             throw new ServletException();
         }
-        User user = new User(id, username, email, country, role, status, password, dob);
+        User user = new User(id, username, email, country, role, status, password, dob, phone);
         userService.modifyUser(user);
         List<User> listUser = userService.getAllUsers();
         request.setAttribute("listUser", listUser);
@@ -139,9 +141,9 @@ public class UserServlet extends HttpServlet {
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
-        userService.removeUser(id);
-//// Cập nhật trạng thái thành unactive (status = false)
-//        userService.updateUserStatus(id, false);
+//        userService.removeUser(id);
+// Cập nhật trạng thái thành unactive (status = false)
+        userService.updateUserStatus(id, false);
         List<User> listUser = userService.getAllUsers();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher

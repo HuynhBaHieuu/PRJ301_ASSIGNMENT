@@ -21,20 +21,35 @@
                 <th>userName</th>
                 <th>Email</th>
                 <th>Country</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Phone</th>
                 <th>Actions</th>
             </tr>
             <c:forEach var="user" items="${listUser}">
                 <tr>
                     <td><c:out value="${user.id}"/></td>
-                <td><c:out value="${user.username}"/></td>
-                <td><c:out value="${user.email}"/></td>
-                <td><c:out value="${user.country}"/></td>                
-                <td>
-                    <a
-                        href="users?action=edit&id=${user.id}">Edit</a>
-                    <a
-                        href="users?action=delete&id=${user.id}">Delete</a>
-                </td>
+                    <td><c:out value="${user.username}"/></td>
+                    <td><c:out value="${user.email}"/></td>
+                    <td><c:out value="${user.country}"/></td>
+                    <td><c:out value="${user.role}"/></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${user.status}">
+                                Active
+                            </c:when>
+                            <c:otherwise>
+                                Unactive
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td><c:out value="${user.phone}"/></td>
+                    <td>
+                        <a
+                            href="users?action=edit&id=${user.id}">Edit</a>
+                        <a
+                            href="users?action=delete&id=${user.id}">Delete</a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

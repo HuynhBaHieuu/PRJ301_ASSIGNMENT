@@ -13,13 +13,14 @@ public class User {
     private boolean status;
     private String password;
     private Date dob;
+    private String phone;
 // Constructor mặc định
     public User() {
         
     }   
 // Constructor đầy đủ
 
-    public User(int id, String username, String email, String country, String role, boolean status, String password, Date dob) {
+    public User(int id, String username, String email, String country, String role, boolean status, String password, Date dob, String phone) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -28,6 +29,17 @@ public class User {
         this.status = status;
         this.password = password;
         this.dob = dob;
+        this.phone = phone;
+    }
+    public User(int id, String username, String email, String country, String role, boolean status, String password, String phone) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.country = country;
+        this.role = role;
+        this.status = status;
+        this.password = password;
+        this.phone = phone;
     }
 
     public User(int id, String username, String role) {
@@ -109,6 +121,15 @@ public class User {
         this.dob = dob;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
+    
 // Phương thức toString() để in đối tượng User
     @Override
     public String toString() {
@@ -121,6 +142,7 @@ public class User {
                 + ", status=" + status
                 + ", password='" + password + '\''
                 + ", dob='" + dob + '\''
+                + ", phone='" + phone + '\''
                 + '}';
     }
 }
