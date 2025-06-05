@@ -45,7 +45,10 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Login" /></td>
+                    <td>
+                        <input type="submit" value="Login" />
+                        <input type="button" value="Sign up" onclick="window.location.href = 'register?action=create';" />
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="color:red;">

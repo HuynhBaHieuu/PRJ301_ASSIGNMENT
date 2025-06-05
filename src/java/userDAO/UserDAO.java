@@ -22,7 +22,8 @@ import java.sql.Date;
 public class UserDAO implements IUserDAO {
 
     private static final String LOGIN2 = "SELECT id, userName, role FROM [Users] WHERE userName=? AND password=?";
-    private static final String INSERT_USER = "INSERT INTO Users (username, email, country, role, status, password, phone) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String REGISTER = "INSERT INTO Users (username, email, country, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_USER = "INSERT INTO Users (username, email, country, role, status, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM Users WHERE id = ?";
     private static final String UPDATE_USER = "UPDATE Users SET username = ?, email = ?, country = ?, role = ?, status = ?, password = ?, dob = ?, phone = ? WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Users";
@@ -50,6 +51,20 @@ public class UserDAO implements IUserDAO {
         }
 
         return us;
+    }
+    
+    @Override
+    public void register(User user) throws SQLException {
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(REGISTER)) {
+
+            ptm.setString(1, user.getUsername());
+            ptm.setString(2, user.getEmail());
+            ptm.setString(3, user.getCountry());
+            ptm.setString(4, user.getPassword());
+            ptm.setDate(5, user.getDob());
+            ptm.setString(6, user.getPhone());
+            ptm.executeUpdate();
+        }
     }
 
     public List<User> search(String searchName) {
@@ -91,8 +106,8 @@ public class UserDAO implements IUserDAO {
             ptm.setString(4, user.getRole());
             ptm.setBoolean(5, user.getStatus());
             ptm.setString(6, user.getPassword());
-//            ptm.setDate(7, user.getDob());
-            ptm.setString(7, user.getPhone());
+            ptm.setDate(7, user.getDob());
+            ptm.setString(8, user.getPhone());
             ptm.executeUpdate();
         }
     }

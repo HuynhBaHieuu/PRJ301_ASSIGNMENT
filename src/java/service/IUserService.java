@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserService {
+    void register(User user) throws SQLException;
+    
     void addUser(User user) throws SQLException;
 
     void modifyUser(User user) throws SQLException;

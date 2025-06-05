@@ -1,19 +1,25 @@
+<%-- 
+    Document   : register
+    Created on : Jun 5, 2025, 11:47:22 AM
+    Author     : Admin
+--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Create New User</title>
+        <title>Register page</title>
     </head>
     <body>
     <center>
-        <h1>User Management</h1>
-        <h2><a href="users?action=users">List All Users</a></h2>
+        <h1>Register</h1>
     </center>
     <div align="center">
-        <form method="post" action="users?action=create">
+        <form method="post" action="register?action=create">
             <table border="1" cellpadding="5">
-                <caption><h2>Add New User</h2></caption>
+                <caption><h2>Register New User</h2></caption>
                 <tr>
                     <th>User Name:</th>
                     <td><input type="text" name="username" id="username" size="45" required/></td>
@@ -25,19 +31,6 @@
                 <tr>
                     <th>Country:</th>
                     <td><input type="text" name="country" id="country" size="45" required/></td>
-                </tr>
-                <tr>
-                    <th>Role:</th>
-                    <td>
-                        <select name="role" id="role" required>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Status:</th>
-                    <td><input type="checkbox" name="status" id="status" value="1"/> Active</td>
                 </tr>
                 <tr>
                     <th>Password:</th>
@@ -53,7 +46,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" value="Save"/>
+                        <input type="submit" value="Register"/>
                     </td>
                 </tr>
             </table>
