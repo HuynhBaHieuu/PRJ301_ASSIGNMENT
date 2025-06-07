@@ -9,7 +9,9 @@ import java.util.List;
 import model.Product;
 import productDAO.IProductDAO;
 import productDAO.ProductDAO;
+
 public class ProductService implements IProductService {
+
     private IProductDAO productDao;
 
     public ProductService() {
@@ -32,8 +34,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public List<Product> searchProducts(String query) throws SQLException {
+        return productDao.searchProducts(query);
+    }
+
+    @Override
     public void removeProduct(int id, boolean status) throws SQLException {
-         productDao.deleteProduct(id, status);
+        productDao.deleteProduct(id, status);
     }
 
     @Override

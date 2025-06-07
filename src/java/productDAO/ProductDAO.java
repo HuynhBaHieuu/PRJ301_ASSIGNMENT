@@ -20,11 +20,12 @@ import model.User;
  */
 public class ProductDAO implements IProductDAO {
 
-    private static final String SEARCH_PRODUCTS = "SELECT * FROM Products Where id like ?";
+    private static final String SELECT_PRODUCTS = "SELECT * FROM Products Where id like ?";
     private static final String INSERT_PRODUCT = "INSERT INTO Products (name, price, description, stock, status, category_id) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM Products";
     private static final String UPDATE_PRODUCT = "UPDATE Products SET name = ?, price = ?, description = ?, stock = ?, import_date = ?, status = ?, category_id = ? WHERE id = ?";
     private static final String UPDATE_STATUS = "UPDATE Products SET status = ? WHERE id = ?";
+    private static final String SEARCH_PRODUCT = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?";
 
     @Override
     public void insertProduct(Product pro) throws SQLException {
@@ -44,7 +45,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public Product selectProduct(int id) {
         Product p = null;
-        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_PRODUCTS)) {
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SELECT_PRODUCTS)) {
 
             ptm.setInt(1, id);
             ResultSet rs = ptm.executeQuery();
@@ -83,7 +84,7 @@ public class ProductDAO implements IProductDAO {
                         rs.getDate("import_date"),
                         rs.getBoolean("status"),
                         rs.getInt("category_id")
-                        );
+                );
                 products.add(p);
             }
 
@@ -91,6 +92,33 @@ public class ProductDAO implements IProductDAO {
             e.printStackTrace();
         }
         return products;
+    }
+
+    @Override
+    public List<Product> searchProducts(String query) throws SQLException{
+        List<Product> filteredProducts = new ArrayList<>();
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_PRODUCT);) {
+
+            ptm.setString(1, "%" + query + "%");
+            ptm.setString(2, "%" + query + "%");
+            ResultSet rs = ptm.executeQuery();
+            while (rs.next()) {
+                // Lấy dữ liệu từ kết quả truy vấn và tạo đối tượng Product
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                String description = rs.getString("description");
+                int stock = rs.getInt("stock");
+
+                // Thêm sản phẩm vào danh sách kết quả
+                Product product = new Product(id, name, price, description, stock);
+                filteredProducts.add(product);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filteredProducts;
     }
 
     @Override
@@ -120,7 +148,7 @@ public class ProductDAO implements IProductDAO {
         }
         return rowUpdated;
     }
-    
+
     public static void main(String[] args) {
         // Instantiate ProductDAO
         ProductDAO productDAO = new ProductDAO();

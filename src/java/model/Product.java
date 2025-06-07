@@ -36,6 +36,13 @@ public class Product {
         this.status = status;
         this.categoryId = categoryId;
     }
+    public Product(int id, String name, double price, String description, int stock) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.stock = stock;
+    }
 
     public boolean getStatus() {
         return status;

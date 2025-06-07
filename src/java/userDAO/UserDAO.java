@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -21,7 +22,7 @@ import java.sql.Date;
  */
 public class UserDAO implements IUserDAO {
 
-    private static final String LOGIN2 = "SELECT id, userName, role FROM [Users] WHERE userName=? AND password=?";
+    private static final String LOGIN2 = "SELECT id, userName, role, status FROM [Users] WHERE userName=? AND password=?";
     private static final String REGISTER = "INSERT INTO Users (username, email, country, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String INSERT_USER = "INSERT INTO Users (username, email, country, role, status, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM Users WHERE id = ?";
@@ -43,7 +44,11 @@ public class UserDAO implements IUserDAO {
                 int id = rs.getInt("id");
                 String user = rs.getString("userName");
                 String role = rs.getString("role");
-                us = new User(id, user, role);
+                boolean status = rs.getBoolean("status");
+                if(!status){
+                    return null;
+                }
+                 us = new User(id, user, role);
             }
 
         } catch (Exception e) {

@@ -13,11 +13,14 @@ import java.sql.SQLException;
  * @author Admin
  */
 public interface IProductService {
+
     void addProduct(Product pro) throws SQLException;
 
     Product getProductById(int id);
 
     List<Product> getAllProducts();
+
+    List<Product> searchProducts(String query) throws SQLException;
 
     void removeProduct(int id, boolean status) throws SQLException;
 
