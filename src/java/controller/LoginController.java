@@ -93,7 +93,7 @@ public class LoginController extends HttpServlet {
 
         } else {
             // Đăng nhập sai, gửi về lại login với lỗi
-            request.setAttribute("errorMessage", "Sai tên đăng nhập, mật khẩu hoặc tài khoản không hoạt động");
+            request.setAttribute("errorMessage", "Invalid username, password or account is inactive");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
