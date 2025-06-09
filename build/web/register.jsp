@@ -11,18 +11,51 @@
 <html>
     <head>
         <title>Register page</title>
+        <script>
+            function validateUsername() {
+                var username = document.getElementById("username").value;
+                var errorSpan = document.getElementById("usernameError");
+                
+                // Remove any spaces from the input
+                var trimmedUsername = username.replace(/\s+/g, '');
+                if (username !== trimmedUsername) {
+                    // Update the input field to remove spaces
+                    document.getElementById("username").value = trimmedUsername;
+                    errorSpan.innerHTML = "Spaces have been automatically removed";
+                    errorSpan.style.color = "orange";
+                    return false;
+                }
+                
+                if(username.length === 0) {
+                    errorSpan.innerHTML = "Please enter username";
+                    errorSpan.style.color = "red";
+                    return false;
+                } else {
+                    errorSpan.innerHTML = "✓ Username valid";
+                    errorSpan.style.color = "green";
+                    return true;
+                }
+            }
+            
+            function validateForm() {
+                return validateUsername();
+            }
+        </script>
     </head>
     <body>
     <center>
         <h1>Register</h1>
     </center>
     <div align="center">
-        <form method="post" action="register?action=create">
+        <form method="post" action="register?action=create" onsubmit="return validateForm()">
             <table border="1" cellpadding="5">
                 <caption><h2>Register New User</h2></caption>
                 <tr>
                     <th>User Name:</th>
-                    <td><input type="text" name="username" id="username" size="45" required/></td>
+                    <td>
+                        <input type="text" name="username" id="username" size="45" required onkeyup="validateUsername()"/>
+                        <span id="usernameError"></span>
+                    </td>
                 </tr>
                 <tr>
                     <th>Email:</th>

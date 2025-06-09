@@ -39,7 +39,7 @@
                                 Active
                             </c:when>
                             <c:otherwise>
-                                Unactive
+                                Inactive
                             </c:otherwise>
                         </c:choose>
                     </td>
