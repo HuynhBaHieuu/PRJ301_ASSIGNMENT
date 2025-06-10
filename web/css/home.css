@@ -1,0 +1,252 @@
+body {
+    margin: 0;
+}
+
+.header {
+    background: #009045;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 100px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: cursive sans-serif;
+}
+.logo img{
+    width: 50px;
+}
+
+.search-bar {
+    flex: 1;
+    max-width: 400px;
+    display: flex;
+    margin: 10px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 6px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    width: 70px;
+    padding: 6px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: #FDC10E;
+    border-radius: 5px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.header-icons div {
+    text-align: center;
+    font-size: 15px;
+    display: flex;
+    gap: 15px;
+}
+
+.header-cart {
+    border: solid white 2px;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.sub-header {
+    padding: 0px 30px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 70px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.menu-toggle {
+    font-weight: bold;
+    margin-right: 20px;
+    background-color: #2F4858;
+    padding: 15px 60px 15px 15px;
+    color: white;
+    font-size: 20px;
+}
+
+.nav-links a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.main-content {
+    margin: 0 auto;
+    width: 1489px;
+    display: flex;
+/*    padding: 0 216px;     */
+}
+
+.sidebar {
+    width: 320px;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: solid 1px #ddd;
+    font-size: 18px;
+}
+
+.sidebar li {
+    padding: 10px 0;
+    border-bottom: solid 1px #ddd;
+    padding-left: 15px;
+}
+
+.banner-area {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.main-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+.main-banner{
+    width: fit-content;
+}
+.banner-main {
+    height: 422px;
+    border-radius: 5px;
+}
+.banner-phan{
+    position: absolute;
+    height: 200px;
+    bottom: 70px;
+    right: 50px;
+}.main-banner h2{
+    position: absolute;
+    color: #FDC10E;
+    bottom: 0px;
+    right: 60px;
+    font-size: 20px;
+    
+}
+
+.banner-area{
+    display: flex;
+    gap: 20px;
+}
+
+.rightimg-banner img{
+    width: 400px;
+    border-radius: 5px;
+}
+
+
+.discount-text {
+    text-align: right;
+    padding: 10px;
+    color: #005500;
+}
+
+.discount-text span {
+    font-size: 36px;
+    color: #008000;
+}
+
+.features {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.feature-box {
+    background: #fffbe6;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bottom-main-content{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px;
+}
+.bottom-main-content img{
+    height: 200px;
+    width: 350px;
+}
+.bottom-main-content div{
+    position: relative;
+}
+.bottom-main-content p{
+    position: absolute;
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+    right: 30px;
+    top: 20px;
+}
+.bottom-main-content strong{
+    font-size: 70px;
+}
+
+h1{
+    text-align: center;
+    margin: 30px 0;
+    font-weight: bolder;
+}
+
+
+.products{
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;         /* Cho phép xuống dòng */
+    justify-content: left;
+    gap: 24px;
+}
+.product {
+    border: 1px solid #ccc;
+    padding: 0 15px;
+    width: 250px;
+    height: 300px;
+    //
+    display: inline-block;
+    text-align: center;
+}
+.product img {
+    width: 100%;
+    height: auto;
+}
+.product:hover {
+    transform: scale(1.02);
+}
