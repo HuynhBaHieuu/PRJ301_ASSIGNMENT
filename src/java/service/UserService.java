@@ -25,6 +25,10 @@ public class UserService implements IUserService{
         userDAO = new UserDAO();
     }
     
+    public void register(User user) throws SQLException{
+        userDAO.register(user);
+    }
+    
     public void addUser(User user) throws SQLException {
         userDAO.insertUser(user);
     }
