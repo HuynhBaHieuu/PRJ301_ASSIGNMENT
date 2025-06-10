@@ -11,38 +11,6 @@
 <html>
     <head>
         <title>Register page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Register</title>
-        <link rel="stylesheet" href="user/css/register.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <script>
-            function validateUsername() {
-                var username = document.getElementById("username").value;
-                var errorSpan = document.getElementById("usernameError");
-                // Remove any spaces from the input
-                var trimmedUsername = username.replace(/\s+/g, '');
-                if (username !== trimmedUsername) {
-                    // Update the input field to remove spaces
-                    document.getElementById("username").value = trimmedUsername;
-                    errorSpan.innerHTML = "Spaces have been automatically removed";
-                    errorSpan.style.color = "orange";
-                    return false;
-                }
-                if (username.length === 0) {
-                    errorSpan.innerHTML = "Please enter username";
-                    errorSpan.style.color = "red";
-                    return false;
-                } else {
-                    errorSpan.innerHTML = "✓ Username valid";
-                    errorSpan.style.color = "green";
-                    return true;
-                }
-            }
-            function validateForm() {
-                return validateUsername();
-            }
-        </script>
     </head>
     <body>
         <div align="center">

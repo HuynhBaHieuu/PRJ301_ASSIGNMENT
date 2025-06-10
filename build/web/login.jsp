@@ -48,11 +48,11 @@
                     <a href="#">Forgot Password</a>
                 </div>
                 <button type="submit" class="btn">Login</button>
-                
+
                 <div class="divider">
                     <span>or</span>
                 </div>
-                
+
                 <div class="google-btn">
                     <div id="g_id_onload"
                          data-client_id="YOUR_GOOGLE_CLIENT_ID"
@@ -84,7 +84,7 @@
                 console.log("ID: " + responsePayload.sub);
                 console.log('Full Name: ' + responsePayload.name);
                 console.log('Email: ' + responsePayload.email);
-                
+
                 // Gửi thông tin đăng nhập đến server
                 fetch('login', {
                     method: 'POST',
@@ -97,14 +97,14 @@
                         googleId: responsePayload.sub
                     })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.success) {
-                        window.location.href = 'home.jsp';
-                    } else {
-                        document.querySelector('.error-message').textContent = data.message;
-                    }
-                });
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                window.location.href = 'home.jsp';
+                            } else {
+                                document.querySelector('.error-message').textContent = data.message;
+                            }
+                        });
             }
         </script>
     </body>
