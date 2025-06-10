@@ -43,10 +43,10 @@
                     <th>Password:</th>
                     <td><input type="password" name="password" id="password" size="45" required/></td>
                 </tr>
-<!--                <tr>
+                <tr>
                     <th>Date of Birth:</th>
                     <td><input type="date" name="dob" id="dob" required/></td>
-                </tr>-->
+                </tr>
                 <tr>
                     <th>Phone number:</th>
                     <td><input type="text" name="phone" id="phone" required/></td>
