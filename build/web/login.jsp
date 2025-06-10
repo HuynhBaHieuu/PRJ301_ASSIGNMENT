@@ -27,36 +27,33 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="user/css/login.css"> <!-- Liên kết đến CSS -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <body>
-        <form name="input" action="login" method="post">
-            <table>
-                <tr>
-                    <td>User name:</td>
-                    <td><input type="text" name="user" value="<%= savedUser%>" /></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" name="pass" value="<%= savedPass%>" /></td>
-                </tr>
-                <tr>
-                    <td>Remember me:</td>
-                    <td><input type="checkbox" name="remember" <%= (savedUser.isEmpty() ? "" : "checked")%> /></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" value="Login" />
-                        <input type="button" value="Sign up" onclick="window.location.href = 'register?action=create';" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="color:red;">
-                        <%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : ""%>
-                    </td>
-                </tr>
-            </table>
-        </form>
-
+        <div class="wrapper">
+            <form name="input" action="login" method="post">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" id="username" name="user" value="<%= savedUser%>" placeholder="Username" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" name="pass" value="<%= savedPass%>" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox" name="remember" <%= (savedUser.isEmpty() ? "" : "checked")%> > Remember Me</label>
+                    <a href="#">Forgot Password</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="register.jsp">Sign up</a></p>
+                </div>
+                <div class="error-message">
+                    <%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : ""%>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
