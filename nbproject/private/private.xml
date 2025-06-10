@@ -2,11 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/Administrator/Downloads/PRJ301_ASSIGNMENT-master%20(1)/PRJ301_ASSIGNMENT-master/web/home.jsp</file>
-            <file>file:/C:/Users/Administrator/Downloads/PRJ301_ASSIGNMENT-master%20(1)/PRJ301_ASSIGNMENT-master/web/css/home.css</file>
-            <file>file:/C:/Users/Administrator/Downloads/PRJ301_ASSIGNMENT-master%20(1)/PRJ301_ASSIGNMENT-master/src/java/controller/HomeSerlvet.java</file>
-            <file>file:/C:/Users/Administrator/Downloads/PRJ301_ASSIGNMENT-master%20(1)/PRJ301_ASSIGNMENT-master/src/java/service/ProductService.java</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/web/login.jsp</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/web/register.jsp</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/src/java/controller/LoginController.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> d8c5bcffa4a66487daca1b75c48ad593fbeafe9a
     </open-files>
 </project-private>
