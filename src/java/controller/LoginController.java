@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
     }
 
-    private UserDAO userDAO = new UserDAO();    
+    private UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -78,13 +78,9 @@ public class LoginController extends HttpServlet {
                     passCookie.setPath(request.getContextPath());
                     response.addCookie(passCookie);
                 }
-                if ("admin".equals(user.getRole())) {
-                    // Nếu là admin, chuyển đến trang danh sách sản phẩm
-                    response.sendRedirect("products");
-                } else if ("user".equals(user.getRole())) {
-                    // Nếu là user, chuyển đến trang home
-                    response.sendRedirect("home");
-                }
+
+                // Chuyển hướng về trang home
+                response.sendRedirect("home.jsp");
 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -93,7 +89,7 @@ public class LoginController extends HttpServlet {
 
         } else {
             // Đăng nhập sai, gửi về lại login với lỗi
-            request.setAttribute("errorMessage", "Invalid username, password or account is inactive");
+            request.setAttribute("errorMessage", "Sai tên đăng nhập hoặc mật khẩu");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

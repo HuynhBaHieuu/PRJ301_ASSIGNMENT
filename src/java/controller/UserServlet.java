@@ -1,4 +1,4 @@
-    package controller;
+package controller;
 
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
@@ -88,13 +88,13 @@ public class UserServlet extends HttpServlet {
         String role = request.getParameter("role");
         boolean status = request.getParameter("status") != null;
         String password = request.getParameter("password");
-        Date dob = Date.valueOf(request.getParameter("dob"));
+//        Date dob = Date.valueOf(request.getParameter("dob"));
         String phone = request.getParameter("phone");
 
         if (username == null || email == null || country == null || password == null || phone == null) {
             throw new ServletException();
         }
-        User newUser = new User(0, username, email, country, role, status, password, dob, phone);
+        User newUser = new User(0, username, email, country, role, status, password, phone);
         userService.addUser(newUser);
         List<User> listUser = userService.getAllUsers();
         request.setAttribute("listUser", listUser);

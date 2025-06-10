@@ -12,7 +12,6 @@ import model.User;
  * @author Admin
  */
 public interface IUserDAO {
-    public void register(User user) throws SQLException;
 
     public void insertUser(User user) throws SQLException;
 
