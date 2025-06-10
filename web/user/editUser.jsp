@@ -36,7 +36,7 @@
                 <tr>
                     <th>User Email:</th>
                     <td>
-                        <input type="email" name="email" size="45"
+                        <input type="text" name="email" size="45"
                                value="<c:out value='${user.email}' />"
                                />
                     </td>
