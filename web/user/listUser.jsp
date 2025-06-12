@@ -26,7 +26,7 @@
                 <th>Role</th>
                 <th>Status</th>
                 <th>Phone</th>
-                <th>GoogleId</th>
+<!--                <th>GoogleId</th>-->
                 <th>Actions</th>
             </tr>
             <c:forEach var="user" items="${listUser}">
@@ -47,7 +47,7 @@
                         </c:choose>
                     </td>
                     <td><c:out value="${user.phone}"/></td>
-                    <td><c:out value="${user.googleId}"/></td>
+<!--                    <td><c:out value="${user.googleId}"/></td>-->
                     <td>
                         <a
                             href="users?action=edit&id=${user.id}">Edit</a>
