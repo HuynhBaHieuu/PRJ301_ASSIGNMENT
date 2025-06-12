@@ -12,6 +12,8 @@
         <h2>
             <a href="users?action=create">Add New User</a>
         </h2>
+        <h3><a href="products">List All Products</a></h3>
+        <h3><a href="categories">List All Categories</a></h3>
     </center>
     <div align="center">
         <table border="1" cellpadding="5">
@@ -24,6 +26,7 @@
                 <th>Role</th>
                 <th>Status</th>
                 <th>Phone</th>
+                <th>GoogleId</th>
                 <th>Actions</th>
             </tr>
             <c:forEach var="user" items="${listUser}">
@@ -44,6 +47,7 @@
                         </c:choose>
                     </td>
                     <td><c:out value="${user.phone}"/></td>
+                    <td><c:out value="${user.googleId}"/></td>
                     <td>
                         <a
                             href="users?action=edit&id=${user.id}">Edit</a>

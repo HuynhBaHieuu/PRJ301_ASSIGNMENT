@@ -26,9 +26,9 @@ public class UserDAO implements IUserDAO {
     private static final String REGISTER = "INSERT INTO Users (username, email, country, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String INSERT_USER = "INSERT INTO Users (username, email, country, role, status, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM Users WHERE id = ?";
-    private static final String UPDATE_USER = "UPDATE Users SET username = ?, email = ?, country = ?, role = ?, status = ?, password = ?, dob = ?, phone = ? WHERE id = ?";
+    private static final String UPDATE_USER = "UPDATE Users SET username = ?, email = ?, country = ?, role = ?, status = ?, password = ?, dob = ?, phone = ?, googleId WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Users";
-    private static final String SEARCH_USERS = "SELECT * FROM Users WHERE username LIKE ?";
+    private static final String SEARCH_EMAILS = "SELECT * FROM Users WHERE email LIKE ?";
     private static final String DELETE_USER = "DELETE FROM Users WHERE id = ?";
     private static final String UPDATE_STATUS = "UPDATE Users SET status = ? WHERE id = ?";
 
@@ -72,11 +72,11 @@ public class UserDAO implements IUserDAO {
         }
     }
 
-    public List<User> search(String searchName) {
+    public List<User> findByEmail(String email) {
         List<User> users = new ArrayList<>();
-        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_USERS)) {
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_EMAILS)) {
 
-            ptm.setString(1, "%" + searchName + "%");
+            ptm.setString(1, "%" + email + "%");
             ResultSet rs = ptm.executeQuery();
 
             while (rs.next()) {
@@ -86,11 +86,11 @@ public class UserDAO implements IUserDAO {
                         rs.getString("email"),
                         rs.getString("country"),
                         rs.getString("role"),
-                        //                        Boolean.parseBoolean(rs.getString("status")),
                         rs.getInt("status") == 1,
                         rs.getString("password"),
                         rs.getDate("dob"),
-                        rs.getString("phone")
+                        rs.getString("phone"),
+                        rs.getString("googleId")
                 );
                 users.add(u);
             }
@@ -113,6 +113,7 @@ public class UserDAO implements IUserDAO {
             ptm.setString(6, user.getPassword());
             ptm.setDate(7, user.getDob());
             ptm.setString(8, user.getPhone());
+            ptm.setString(9, user.getGoogleId());
             ptm.executeUpdate();
         }
     }
@@ -132,11 +133,11 @@ public class UserDAO implements IUserDAO {
                         rs.getString("email"),
                         rs.getString("country"),
                         rs.getString("role"),
-                        //                        Boolean.parseBoolean(rs.getString("status")),
                         rs.getInt("status") == 1,
                         rs.getString("password"),
                         rs.getDate("dob"),
-                        rs.getString("phone")
+                        rs.getString("phone"),
+                        rs.getString("googleId")
                 );
             }
 
@@ -158,11 +159,11 @@ public class UserDAO implements IUserDAO {
                         rs.getString("email"),
                         rs.getString("country"),
                         rs.getString("role"),
-                        //                        Boolean.parseBoolean(rs.getString("status")),
                         rs.getInt("status") == 1,
                         rs.getString("password"),
                         rs.getDate("dob"),
-                        rs.getString("phone")
+                        rs.getString("phone"),
+                        rs.getString("googleId")
                 );
                 users.add(u);
             }
@@ -197,7 +198,8 @@ public class UserDAO implements IUserDAO {
             ptm.setString(6, user.getPassword());
             ptm.setDate(7, user.getDob());
             ptm.setString(8, user.getPhone());
-            ptm.setInt(9, user.getId());
+            ptm.setString(9, user.getGoogleId());
+            ptm.setInt(10, user.getId());
 
             rowUpdated = ptm.executeUpdate() > 0;
         }

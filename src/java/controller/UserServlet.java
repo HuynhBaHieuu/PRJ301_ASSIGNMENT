@@ -115,7 +115,7 @@ public class UserServlet extends HttpServlet {
         if (username == null || email == null || country == null || password == null || dob == null || phone  == null) {
             throw new ServletException();
         }
-        User user = new User(id, username, email, country, role, status, password, dob, phone);
+        User user = new User(id, username, email, country, role, status, password, dob, phone,"");
         userService.modifyUser(user);
         List<User> listUser = userService.getAllUsers();
         request.setAttribute("listUser", listUser);

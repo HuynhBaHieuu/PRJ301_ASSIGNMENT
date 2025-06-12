@@ -11,6 +11,8 @@
 <html>
     <head>
         <title>Register page</title>
+        <link rel="stylesheet" type="text/css" href="css/register.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <body>
         <div align="center">
@@ -53,5 +55,6 @@
                     </div>
                 </form>
             </div>
+        </div>
     </body>
 </html>

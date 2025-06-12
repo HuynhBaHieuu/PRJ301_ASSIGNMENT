@@ -14,12 +14,25 @@ public class User {
     private String password;
     private Date dob;
     private String phone;
+    private String googleId;
 // Constructor mặc định
     public User() {
         
     }   
 // Constructor đầy đủ
 
+    public User(int id, String username, String email, String country, String role, boolean status, String password, Date dob, String phone, String googleId) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.country = country;
+        this.role = role;
+        this.status = status;
+        this.password = password;
+        this.dob = dob;
+        this.phone = phone;
+        this.googleId = googleId;
+    }
     public User(int id, String username, String email, String country, String role, boolean status, String password, Date dob, String phone) {
         this.id = id;
         this.username = username;
@@ -31,7 +44,7 @@ public class User {
         this.dob = dob;
         this.phone = phone;
     }
-    public User(int id, String username, String email, String country, String role, boolean status, String password, String phone) {
+    public User(int id, String username, String email, String country, String role, boolean status, String password, String phone, String googleId) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -55,6 +68,15 @@ public class User {
         this.country = country;  
         this.role = role;
     }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+    
 // Getter và Setter cho các thuộc tính
 
     public int getId() {

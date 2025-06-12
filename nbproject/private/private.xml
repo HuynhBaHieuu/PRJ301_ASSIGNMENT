@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/web/css/home.css</file>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/web/home.jsp</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/src/java/controller/GoogleAuthServlet.java</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/src/java/service/UserService.java</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/src/java/userDAO/UserDAO.java</file>
         </group>
     </open-files>
 </project-private>
