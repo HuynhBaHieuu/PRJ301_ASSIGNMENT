@@ -14,6 +14,8 @@ public interface IUserService {
     void removeUser(int id) throws SQLException;
 
     User getUserById(int id);
+    
+    List<User> findByEmail(String email);
 
     List<User> getAllUsers();
 

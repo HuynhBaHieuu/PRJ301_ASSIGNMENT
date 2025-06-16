@@ -3,17 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/Administrator/Downloads/PRJ301_ASSIGNMENT-master%20(1)/PRJ301_ASSIGNMENT-master/web/home.jsp</file>
-            <file>file:/C:/Users/Administrator/Downloads/PRJ301_ASSIGNMENT-master%20(1)/PRJ301_ASSIGNMENT-master/web/css/home.css</file>
-            <file>file:/C:/Users/Administrator/Downloads/PRJ301_ASSIGNMENT-master%20(1)/PRJ301_ASSIGNMENT-master/src/java/controller/HomeSerlvet.java</file>
-            <file>file:/C:/Users/Administrator/Downloads/PRJ301_ASSIGNMENT-master%20(1)/PRJ301_ASSIGNMENT-master/src/java/service/ProductService.java</file>
-=======
-            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/src/java/dao/DBConnection.java</file>
-            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/web/home.jsp</file>
-            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/web/product/productDetail.jsp</file>
-            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/web/css/productDetail.css</file>
->>>>>>> Stashed changes
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/web/category/listCategory.jsp</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/web/user/listUser.jsp</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/src/java/constant/Iconstant.java</file>
         </group>
     </open-files>
 </project-private>

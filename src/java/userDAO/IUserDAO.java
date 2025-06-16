@@ -15,6 +15,8 @@ public interface IUserDAO {
     public void register(User user) throws SQLException;
 
     public void insertUser(User user) throws SQLException;
+    
+    public List<User> findByEmail(String email);
 
     public User selectUser(int id);
 

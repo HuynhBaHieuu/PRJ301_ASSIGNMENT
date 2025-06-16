@@ -44,6 +44,10 @@ public class UserService implements IUserService{
     public User getUserById(int id) {
         return userDAO.selectUser(id);
     }
+    
+    public List<User> findByEmail(String email){
+        return userDAO.findByEmail(email);
+    }
 
     public List<User> getAllUsers() {
         return userDAO.selectAllUsers();

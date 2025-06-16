@@ -11,6 +11,10 @@
         <h2>
             <a href="products?action=create">Add New Product</a>
         </h2>
+        <h3>
+            <a href="users?action=users">List All Users</a>
+        </h3>
+        <h3><a href="categories">List All Categories</a></h3>
     </center>
     <div align="center">
         <h2>Product List</h2>

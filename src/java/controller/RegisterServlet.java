@@ -69,7 +69,7 @@ public class RegisterServlet extends HttpServlet {
         if (username == null || email == null || country == null || password == null || dob == null || phone == null) {
             throw new ServletException();
         }
-        User newUser = new User(0, username, email, country, "user", true, password, dob, phone);
+        User newUser = new User(0, username, email, country, "user", true, password, dob, phone, "");
         userService.addUser(newUser);
         List<User> listUser = userService.getAllUsers();
         request.setAttribute("listUser", listUser);
