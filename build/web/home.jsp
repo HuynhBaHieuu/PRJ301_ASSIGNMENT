@@ -25,14 +25,16 @@
         <div class="header">
             <div class="logo"><img src="image/logo.png" alt="alt"/><span>Nông Sản Tương Lai</span></div>
             <div class="search-bar">
-                <input type="text" placeholder="Tìm sản phẩm..." />
-                <button><i class="fas fa-search"></i></button>
+                <form action="search" method="get">
+                    <input type="text" name="query" placeholder="Tìm sản phẩm..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
             </div>
             <div class="header-icons">
                 <div><img src="//theme.hstatic.net/1000269461/1000985512/14/phone-icon.png?v=2157" width="30" height="30" class="mr-3 align-self-center" alt="phone-icon"> 
                     <div>
                         Gọi mua hàng<br>
-                        0123456789
+                        0829495069
                     </div>
                 </div>
                 <div><img src="//theme.hstatic.net/1000269461/1000985512/14/address-icon.png?v=2157" width="30" height="30" class="mr-3 align-self-center" alt="phone-icon"> 
@@ -71,18 +73,13 @@
         <!-- Body Content -->
         <div class="main-content">
             <!-- Sidebar -->
-            <div class="sidebar">
+            <div class="sidebar">   
                 <ul>
-                    <li>Thuốc Kích rễ</li>
-                    <li>SẢN PHẨM BÁN CHẠY</li>
-                    <li>Mẫu chậu mới 2025</li>
-                    <li>Đất sạch & Giá thể</li>
-                    <li>Phân bón</li>
-                    <li>Hạt giống</li>
-                    <li>Vật tư </li>
-                    <li>Thuốc bảo vệ thực vật</li>
-                    <li>Kích thích sinh trưởng</li>
-                    <li>Dụng cụ làm vườn</li>
+                    <c:forEach var="category" items="${categories}">
+                        <li>
+                            <a href="home?categoryId=${category.categoryId}">${category.name}</a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
@@ -126,19 +123,22 @@
             <img src="image/hoa.jpg" alt="hoa">
 
         </div>
-        <h1>SẢN PHẨM BÁN CHẠY</h1>
+        
         <div class="products">
-            <c:forEach var="product" items="${products}">
-                <div class="product">
-                    <!-- Giả sử sản phẩm có ảnh, bạn có thể thay đổi tùy thuộc vào dữ liệu thực tế -->
-                    <img src="images/${product.id}.jpg" alt="${product.name}">
-                    <h4>${product.name}</h4>
-                    <p>Giá: ${product.price}</p>
-                    <p>${product.description}</p>
-                    <a href="product/productDetail.jsp?id=${product.id}">Chi tiết</a>
+            <c:forEach var="entry" items="${groupedProducts}">
+                <h2 style="margin-top: 40px;">${entry.key.name}</h2>
+
+                <div class="products">
+                    <c:forEach var="product" items="${entry.value}">
+                        <div class="product">
+                            <img src="images/${product.id}.jpg" alt="${product.name}">
+                            <h4>${product.name}</h4>
+                            <p>Giá: ${product.price}</p>
+                            <p>${product.description}</p>
+                            <a href="product/productDetail.jsp?id=${product.id}">Chi tiết</a>
+                        </div>
+                    </c:forEach>
                 </div>
             </c:forEach>
-        </div>
-
     </body>
 </html>

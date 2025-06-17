@@ -25,7 +25,7 @@ public class CategoryDAO implements ICategoryDAO {
     private static final String UPDATE_CATEGORY = "UPDATE Categories SET name = ? WHERE id = ?";
 
     @Override
-    public List<Category> selectAllProducts() {
+    public List<Category> selectCategories() {
         List<Category> categories = new ArrayList<>();
         try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SELECT_ALL_CATEGORIES); ResultSet rs = ptm.executeQuery()) {
 
@@ -44,7 +44,7 @@ public class CategoryDAO implements ICategoryDAO {
     }
 
     @Override
-    public Category selectProduct(int id) {
+    public Category selectCategory(int id) {
         Category c = null;
         try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_CATEGORIES)) {
 
@@ -65,7 +65,7 @@ public class CategoryDAO implements ICategoryDAO {
     }
 
     @Override
-    public void insertProduct(Category cate) throws SQLException {
+    public void insertCategory(Category cate) throws SQLException {
         try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(INSERT_CATEGORY)) {
 
             ptm.setString(1, cate.getName());
@@ -96,7 +96,7 @@ public class CategoryDAO implements ICategoryDAO {
 
         try {
             // Get all products
-            List<Category> categories = categoryDAO.selectAllProducts();
+            List<Category> categories = categoryDAO.selectCategories();
 
             // Check if products list is not empty
             if (categories != null && !categories.isEmpty()) {

@@ -24,29 +24,35 @@ body {
 .logo img{
     width: 50px;
 }
-
-.search-bar {
-    flex: 1;
-    max-width: 400px;
+.search-bar form {
     display: flex;
-    margin: 10px;
+    align-items: center;
+    gap: 8px; /* khoảng cách giữa input và nút */
 }
 
-.search-bar input {
-    width: 100%;
-    padding: 6px;
-    height: 25px;
-    border-radius: 5px;
+.search-bar input[type="text"] {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 250px;
 }
 
 .search-bar button {
-    width: 70px;
-    padding: 6px;
-    background: #fff;
+    padding: 8px 12px;
+    background-color: #ffc107; /* vàng */
     border: none;
+    border-radius: 6px;
     cursor: pointer;
-    background-color: #FDC10E;
-    border-radius: 5px;
+    font-size: 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar button i {
+    pointer-events: none; /* không ảnh hưởng khi click vào icon */
 }
 
 .header-icons {
@@ -101,13 +107,16 @@ body {
     margin: 0 auto;
     width: 1489px;
     display: flex;
-/*    padding: 0 216px;     */
+    /*    padding: 0 216px;     */
 }
 
 .sidebar {
     width: 320px;
     padding: 0;
     margin: 0;
+}
+a {
+    text-decoration: none;
 }
 
 .sidebar ul {
@@ -122,6 +131,9 @@ body {
     padding: 10px 0;
     border-bottom: solid 1px #ddd;
     padding-left: 15px;
+}
+.sidebar a{
+    color: #333;
 }
 
 .banner-area {
@@ -148,13 +160,14 @@ body {
     height: 200px;
     bottom: 70px;
     right: 50px;
-}.main-banner h2{
+}
+.main-banner h2{
     position: absolute;
     color: #FDC10E;
     bottom: 0px;
     right: 60px;
     font-size: 20px;
-    
+
 }
 
 .banner-area{
@@ -242,10 +255,18 @@ h1{
     display: inline-block;
     text-align: center;
 }
-.product img {
-    width: 100%;
-    height: auto;
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
-.product:hover {
-    transform: scale(1.02);
+
+.product {
+    width: 220px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }

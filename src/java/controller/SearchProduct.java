@@ -43,7 +43,8 @@ public class SearchProduct extends HttpServlet {
 
             // Gửi kết quả tìm kiếm đến trang JSP
             request.setAttribute("products", products);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+            request.setAttribute("searchQuery", query);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("searchResult.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {
             // Xử lý lỗi nếu có sự cố trong quá trình tìm kiếm

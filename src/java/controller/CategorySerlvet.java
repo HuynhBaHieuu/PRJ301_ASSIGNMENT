@@ -72,7 +72,7 @@ public class CategorySerlvet extends HttpServlet {
 //                    deleteProduct(request, response);
 //                    break;
                 default:
-                    listProduct(request, response);
+                    listCategory(request, response);
                     break;
             }
         } catch (Exception ex) {
@@ -83,9 +83,9 @@ public class CategorySerlvet extends HttpServlet {
             throws Exception {
         String name = request.getParameter("name");
         Category newCategory = new Category(0, name);
-        categoryService.addProduct(newCategory);
+        categoryService.addCategory(newCategory);
 
-        List<Category> listProduct = categoryService.getAllProducts();
+        List<Category> listProduct = categoryService.getAllCategories();
         request.setAttribute("categories", listProduct);
         RequestDispatcher dispatcher = request.getRequestDispatcher("category/listCategory.jsp");
         dispatcher.forward(request, response);
@@ -97,9 +97,9 @@ public class CategorySerlvet extends HttpServlet {
         String name = request.getParameter("name");
         
         Category category = new Category(id, name);
-        categoryService.modifyProduct(category);
+        categoryService.modifyCategory(category);
 
-        List<Category> listProduct = categoryService.getAllProducts();
+        List<Category> listProduct = categoryService.getAllCategories();
         request.setAttribute("categories", listProduct);
         RequestDispatcher dispatcher = request.getRequestDispatcher("category/listCategory.jsp");
         dispatcher.forward(request, response);
@@ -114,15 +114,15 @@ public class CategorySerlvet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Category existingProduct = categoryService.getProductById(id);
-        request.setAttribute("category", existingProduct);
+        Category existingCategory = categoryService.getCategoryById(id);
+        request.setAttribute("category", existingCategory);
         RequestDispatcher dispatcher = request.getRequestDispatcher("category/editCategory.jsp");
         dispatcher.forward(request, response);
     }
-    private void listProduct(HttpServletRequest request, HttpServletResponse response)
+    private void listCategory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Category> listProduct = categoryService.getAllProducts();
-        request.setAttribute("categories", listProduct);
+        List<Category> listCategory = categoryService.getAllCategories();
+        request.setAttribute("categories", listCategory);
         RequestDispatcher dispatcher = request.getRequestDispatcher("category/listCategory.jsp");
         dispatcher.forward(request, response);
     }

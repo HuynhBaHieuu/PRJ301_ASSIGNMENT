@@ -11,10 +11,10 @@ import model.Category;
  */
 public interface ICategoryDAO {
 
-    public List<Category> selectAllProducts();
-    public Category selectProduct(int id);
+    public List<Category> selectCategories();
+    public Category selectCategory(int id);
 
-    public void insertProduct(Category cate) throws SQLException;
+    public void insertCategory(Category cate) throws SQLException;
 
     public void deleteCategory(int id) throws SQLException;
 

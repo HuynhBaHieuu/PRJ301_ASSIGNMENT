@@ -17,7 +17,9 @@ public interface IProductService {
     void addProduct(Product pro) throws SQLException;
 
     Product getProductById(int id);
-
+    
+    List<Product> getProductsByCategoryId(int categoryId);
+    
     List<Product> getAllProducts();
 
     List<Product> searchProducts(String query) throws SQLException;

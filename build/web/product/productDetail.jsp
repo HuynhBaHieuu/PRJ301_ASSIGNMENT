@@ -1,10 +1,5 @@
-<%-- 
-    Document   : productDetail
-    Created on : Jun 14, 2025, 8:56:39 PM
-    Author     : Administrator
---%>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="model.Product" %>
 <%@ page import="service.ProductService" %>
@@ -29,9 +24,12 @@
 <head>
     <meta charset="UTF-8">
     <title><%= product.getName() %></title>
+    <link rel="stylesheet" href="../css/home.css" />
     <link rel="stylesheet" href="../css/productDetail.css" />
 </head>
 <body>
+    <%@ include file="../design/header.jsp" %>
+    <%@ include file="../design/navbar.jsp" %>
     <div class="container">
     <!-- Bên trái: Ảnh sản phẩm -->
     <div class="left-image">

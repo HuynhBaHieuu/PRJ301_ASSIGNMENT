@@ -14,13 +14,13 @@ import java.util.List;
  */
 public interface ICategoryService {
 
-    List<Category> getAllProducts();
+    List<Category> getAllCategories();
 
-    Category getProductById(int id);
+    Category getCategoryById(int id);
 
-    void addProduct(Category pro) throws SQLException;
+    void addCategory(Category pro) throws SQLException;
 
-    void removeProduct(int id) throws SQLException;
+    void removeCategory(int id) throws SQLException;
 
-    boolean modifyProduct(Category pro) throws SQLException;
+    boolean modifyCategory(Category pro) throws SQLException;
 }

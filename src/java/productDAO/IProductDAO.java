@@ -13,6 +13,8 @@ public interface IProductDAO {
     public void insertProduct(Product pro) throws SQLException;
 
     public Product selectProduct(int id);
+    
+    public List<Product> getProductsByCategoryId(int categoryId);
 
     public List<Product> selectAllProducts();
 

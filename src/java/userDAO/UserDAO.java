@@ -26,7 +26,7 @@ public class UserDAO implements IUserDAO {
     private static final String REGISTER = "INSERT INTO Users (username, email, country, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String INSERT_USER = "INSERT INTO Users (username, email, country, role, status, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM Users WHERE id = ?";
-    private static final String UPDATE_USER = "UPDATE Users SET username = ?, email = ?, country = ?, role = ?, status = ?, password = ?, dob = ?, phone = ?, googleId WHERE id = ?";
+    private static final String UPDATE_USER = "UPDATE Users SET username = ?, email = ?, country = ?, role = ?, status = ?, password = ?, dob = ?, phone = ?, googleId = ? WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Users";
     private static final String SEARCH_EMAILS = "SELECT * FROM Users WHERE email LIKE ?";
     private static final String DELETE_USER = "DELETE FROM Users WHERE id = ?";

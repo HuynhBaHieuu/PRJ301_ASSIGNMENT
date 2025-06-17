@@ -21,6 +21,7 @@ import model.User;
 public class ProductDAO implements IProductDAO {
 
     private static final String SELECT_PRODUCTS = "SELECT * FROM Products Where id like ?";
+    private static final String SELECT_CATEGORIES = "SELECT * FROM Products WHERE category_id = ?";
     private static final String INSERT_PRODUCT = "INSERT INTO Products (name, price, description, stock, status, category_id) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM Products";
     private static final String UPDATE_PRODUCT = "UPDATE Products SET name = ?, price = ?, description = ?, stock = ?, import_date = ?, status = ?, category_id = ? WHERE id = ?";
@@ -67,6 +68,31 @@ public class ProductDAO implements IProductDAO {
             e.printStackTrace();
         }
         return p;
+    }
+    
+    public List<Product> getProductsByCategoryId(int categoryId) {
+        List<Product> list = new ArrayList<>();
+
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SELECT_CATEGORIES)) {
+
+            ptm.setInt(1, categoryId);
+            ResultSet rs = ptm.executeQuery();
+
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setPrice(rs.getDouble("price"));
+                p.setDescription(rs.getString("description"));
+                p.setCategoryId(rs.getInt("category_id"));
+                // thêm ảnh nếu có
+                list.add(p);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
     @Override

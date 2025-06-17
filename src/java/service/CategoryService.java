@@ -23,27 +23,27 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public List<Category> getAllProducts() {
-        return categoryDao.selectAllProducts();
+    public List<Category> getAllCategories() {
+        return categoryDao.selectCategories();
     }
 
     @Override
-    public Category getProductById(int id) {
-        return categoryDao.selectProduct(id);
+    public Category getCategoryById(int id) {
+        return categoryDao.selectCategory(id);
     }
 
     @Override
-    public void addProduct(Category cate) throws SQLException {
-        categoryDao.insertProduct(cate);
+    public void addCategory(Category cate) throws SQLException {
+        categoryDao.insertCategory(cate);
     }
 
     @Override
-    public void removeProduct(int id) throws SQLException {
+    public void removeCategory(int id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean modifyProduct(Category cate) throws SQLException {
+    public boolean modifyCategory(Category cate) throws SQLException {
         return categoryDao.updateCategory(cate);
     }
 
