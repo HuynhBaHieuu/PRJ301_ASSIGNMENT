@@ -113,7 +113,7 @@ public class UserDAO implements IUserDAO {
             ptm.setString(6, user.getPassword());
             ptm.setDate(7, user.getDob());
             ptm.setString(8, user.getPhone());
-            ptm.setString(9, user.getGoogleId());
+//            ptm.setString(9, user.getGoogleId());
             ptm.executeUpdate();
         }
     }

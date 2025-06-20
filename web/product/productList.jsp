@@ -35,6 +35,7 @@
                 <th>Stock</th>
                 <th>Status</th>
                 <th>CategoryID</th>
+                <th>ImageURL</th>
                 <th>Actions</th>
             </tr>
             <c:forEach var="product" items="${products}" varStatus="status">
@@ -56,6 +57,7 @@
                             </c:choose>
                         </td>
                         <td>${product.categoryId}</td>
+                        <td>${product.imageUrl}</td>
                         <td>
                             <a href="products?action=edit&id=${product.id}">Edit</a>
                             <a href="products?action=delete&id=${product.id}">Delete</a>

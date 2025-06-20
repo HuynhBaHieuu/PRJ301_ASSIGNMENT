@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="header-cart"><img src="//theme.hstatic.net/1000269461/1000985512/14/cart-icon.png?v=2157" width="30" height="30" alt="cart_icon">
-                    <span>Giỏ hàng</span>
+                    <a href="<%= request.getContextPath() %>/cart/cart2.jsp">Giỏ hàng</a><br><br>
                 </div>
                 <div><a href="logout" style="font-size: 25px; color:white;">Logout</a></div>
             </div>

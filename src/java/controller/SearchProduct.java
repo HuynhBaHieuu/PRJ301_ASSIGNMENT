@@ -34,7 +34,7 @@ public class SearchProduct extends HttpServlet {
         String query = request.getParameter("query");
 
         if (query == null || query.trim().isEmpty()) {
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("home");
             return;
         }
         try {

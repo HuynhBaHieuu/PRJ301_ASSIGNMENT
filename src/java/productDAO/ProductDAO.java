@@ -22,9 +22,9 @@ public class ProductDAO implements IProductDAO {
 
     private static final String SELECT_PRODUCTS = "SELECT * FROM Products Where id like ?";
     private static final String SELECT_CATEGORIES = "SELECT * FROM Products WHERE category_id = ?";
-    private static final String INSERT_PRODUCT = "INSERT INTO Products (name, price, description, stock, status, category_id) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_PRODUCT = "INSERT INTO Products (name, price, description, stock, status, category_id, image_url) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM Products";
-    private static final String UPDATE_PRODUCT = "UPDATE Products SET name = ?, price = ?, description = ?, stock = ?, import_date = ?, status = ?, category_id = ? WHERE id = ?";
+    private static final String UPDATE_PRODUCT = "UPDATE Products SET name = ?, price = ?, description = ?, stock = ?, import_date = ?, status = ?, category_id = ?, image_url = ? WHERE id = ?";
     private static final String UPDATE_STATUS = "UPDATE Products SET status = ? WHERE id = ?";
     private static final String SEARCH_PRODUCT = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?";
 
@@ -39,6 +39,7 @@ public class ProductDAO implements IProductDAO {
 //            ptm.setDate(5, pro.getImportDate());
             ptm.setBoolean(5, pro.getStatus());
             ptm.setInt(6, pro.getCategoryId());
+            ptm.setString(7,pro.getImageUrl());
             ptm.executeUpdate();
         }
     }
@@ -60,7 +61,8 @@ public class ProductDAO implements IProductDAO {
                         rs.getInt("stock"),
                         rs.getDate("import_date"),
                         rs.getBoolean("status"),
-                        rs.getInt("category_id")
+                        rs.getInt("category_id"),
+                        rs.getString("image_url")
                 );
             }
 
@@ -85,6 +87,7 @@ public class ProductDAO implements IProductDAO {
                 p.setPrice(rs.getDouble("price"));
                 p.setDescription(rs.getString("description"));
                 p.setCategoryId(rs.getInt("category_id"));
+                p.setImageUrl(rs.getString("image_url"));
                 // thêm ảnh nếu có
                 list.add(p);
             }
@@ -109,7 +112,8 @@ public class ProductDAO implements IProductDAO {
                         rs.getInt("stock"),
                         rs.getDate("import_date"),
                         rs.getBoolean("status"),
-                        rs.getInt("category_id")
+                        rs.getInt("category_id"),
+                        rs.getString("image_url")
                 );
                 products.add(p);
             }
@@ -168,7 +172,8 @@ public class ProductDAO implements IProductDAO {
             ptm.setDate(5, pro.getImportDate());
             ptm.setBoolean(6, pro.getStatus());
             ptm.setInt(7, pro.getCategoryId());
-            ptm.setInt(8, pro.getId());
+            ptm.setString(8, pro.getImageUrl());
+            ptm.setInt(9, pro.getId());
 
             rowUpdated = ptm.executeUpdate() > 0;
         }

@@ -83,6 +83,14 @@
                 </tr>
                 
                 <tr>
+                    <th>ImageURL:</th>
+                    <td>
+                        <input type="number" name="imageUrl" 
+                               value="<c:out value='${product.imageUrl}'/>" required /> 
+                    </td>
+                </tr>
+                
+                <tr>
                     <td colspan="2" align="center">
                         <input type="submit" value="Save" />
                     </td>

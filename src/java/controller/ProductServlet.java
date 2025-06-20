@@ -92,8 +92,9 @@ public class ProductServlet extends HttpServlet {
 //        Date importDate = Date.valueOf(request.getParameter("importDate"));
         boolean status = request.getParameter("status") != null;
         int category_id = Integer.parseInt(request.getParameter("categoryId"));
+        String imageURL = request.getParameter("imageUrl");
         
-        Product newProduct = new Product(0, name, price, description, stock, status, category_id);
+        Product newProduct = new Product(0, name, price, description, stock, status, category_id, imageURL);
         productService.addProduct(newProduct);
 
         List<Product> listProduct = productService.getAllProducts();
@@ -112,8 +113,9 @@ public class ProductServlet extends HttpServlet {
         Date importDate = Date.valueOf(request.getParameter("importDate"));
         boolean status = request.getParameter("status") != null;
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+        String imageURL = request.getParameter("imageUrl");
         
-        Product product = new Product(id, name, price, description, stock, importDate, status, categoryId);
+        Product product = new Product(id, name, price, description, stock, importDate, status, categoryId, imageURL);
         productService.modifyProduct(product);
 
         List<Product> listProduct = productService.getAllProducts();

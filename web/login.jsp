@@ -49,10 +49,12 @@
                 </div>
                 <button type="submit" class="btn">Login</button>
 
-                <div class="divider">
-                    <span>or</span>
+                <div style="text-align:center; margin:20px 0;">
+                    <hr style="display:inline-block; width:40%; vertical-align:middle;">
+                    <span style="padding:0 10px;color:#FFFFFF;">OR</span>
+                    <hr style="display:inline-block; width:40%; vertical-align:middle;">
                 </div>
-
+                
                 <div class="google-btn">
                     <div id="g_id_onload"
                          data-client_id="826663688212-1rv081sttnimf0vbdsdnj70io4on5u9d.apps.googleusercontent.com"

@@ -26,7 +26,7 @@
                             <h4>${product.name}</h4>
                             <p>Giá: ${product.price}</p>
                             <p>${product.description}</p>
-                            <a href="productDetail.jsp?id=${product.id}">Chi tiết</a>
+                            <a href="product/productDetail.jsp?id=${product.id}">Chi tiết</a>
                         </div>
                     </c:forEach>
 

@@ -12,11 +12,12 @@ public class Product {
     private Date importDate;
     private boolean status;
     private int categoryId;
+    private String imageUrl;
 
     public Product() {
     }
 
-    public Product(int id, String name, double price, String description, int stock, boolean status, int categoryId) {
+    public Product(int id, String name, double price, String description, int stock, boolean status, int categoryId, String imageUrl) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -24,9 +25,10 @@ public class Product {
         this.stock = stock;
         this.status = status;
         this.categoryId = categoryId;
+        this.imageUrl = imageUrl;
     }
 
-    public Product(int id, String name, double price, String description, int stock, Date importDate, boolean status, int categoryId) {
+    public Product(int id, String name, double price, String description, int stock, Date importDate, boolean status, int categoryId, String imageUrl) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -35,6 +37,7 @@ public class Product {
         this.importDate = importDate;
         this.status = status;
         this.categoryId = categoryId;
+        this.imageUrl = imageUrl;
     }
     public Product(int id, String name, double price, String description, int stock) {
         this.id = id;
@@ -44,6 +47,14 @@ public class Product {
         this.stock = stock;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+    
     public boolean getStatus() {
         return status;
     }
@@ -112,7 +123,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", stock=" + stock + ", importDate=" + importDate + ", status=" + status + ", categoryId=" + categoryId + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", stock=" + stock + ", importDate=" + importDate + ", status=" + status + ", categoryId=" + categoryId + ", imageURL=" + imageUrl + '}';
     }
 
 }
