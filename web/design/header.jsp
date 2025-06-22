@@ -4,12 +4,13 @@
     Author     : Admin
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <!-- Header -->
         <div class="header">
-            <div class="logo"><img src="../image/logo.png" alt="alt"/><span>Nông Sản Tương Lai</span></div>
+            <div class="logo"><img src="${pageContext.request.contextPath}/image/logo.png" alt="alt"/><span>Nông Sản Tương Lai</span></div>
             <div class="search-bar">
                 <form action="search" method="get">
                     <input type="text" name="query" placeholder="Tìm sản phẩm..." />
@@ -29,16 +30,24 @@
                         cửa hàng
                     </div>
                 </div>
-                <div><img src="//theme.hstatic.net/1000269461/1000985512/14/account-icon.png?v=2157" width="30" height="30" alt="account_icon" class="  mr-3 align-self-center"> 
-                    <div>
-                        Tài khoản<br>
-                        Đăng nhập
+                             
+                <%                   
+                    User currentUser = (User) session.getAttribute("user");
+                %>
+                <a href="<%= (currentUser != null) ? "../user/editUser2.jsp" : "../login.jsp"%>" style="text-decoration: none; color: white;">
+                     <div>
+                        <img src="//theme.hstatic.net/1000269461/1000985512/14/account-icon.png?v=2157" width="30" height="30" alt="account_icon" class="mr-3 align-self-center">
+                        <div>
+                            Tài khoản<br>
+                            <%= (currentUser != null) ? currentUser.getUsername() : "Đăng nhập"%>
+                        </div>
                     </div>
-                </div>
+                </a>
+                        
                 <div class="header-cart"><img src="//theme.hstatic.net/1000269461/1000985512/14/cart-icon.png?v=2157" width="30" height="30" alt="cart_icon">
-                    <a href="<%= request.getContextPath() %>/cart/cart2.jsp">Giỏ hàng</a><br><br>
+                    <a href="<%= request.getContextPath()%>/cart/cart2.jsp">Giỏ hàng</a><br><br>
                 </div>
-                <div><a href="logout" style="font-size: 25px; color:white;">Logout</a></div>
+                <div><a href="logout" style="font-size: 25px; color:white;">Đăng xuất</a></div>
             </div>
         </div>
 </html>

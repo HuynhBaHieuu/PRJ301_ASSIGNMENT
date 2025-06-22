@@ -10,10 +10,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     </head>
     <body>
-        <%@ include file="design/header.jsp" %>
-        <%@ include file="design/navbar.jsp" %>
+        <%@ include file="../design/header.jsp" %>
+        <%@ include file="../design/navbar.jsp" %>
         <div class="main-content">
-            <%@ include file="design/sidebar.jsp" %>
+            <%@ include file="../design/sidebar.jsp" %>
             <div class="banner-area">
                 <h2 style="text-align: center; margin-top: 30px;">
                     Kết quả tìm kiếm cho: <span style="color: #009045">${searchQuery}</span>
