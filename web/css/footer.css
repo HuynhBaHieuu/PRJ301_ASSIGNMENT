@@ -1,0 +1,40 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Jun 22, 2025, 3:39:08 PM
+    Author     : Administrator
+*/
+.footer-top{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    background-color: #06793C; 
+    color: white;
+}
+
+.footer-top-sub{
+    display: flex;
+    gap:10px;
+    padding-top: 15px;
+}
+#footer-top-center{
+    padding-left: 100px;
+    padding-right: 100px;
+    border-left: solid white 1px;
+    border-right: solid white 1px;
+}
+.footer-top h3{
+    margin-top: 5px;
+}
+
+
+.footer-bottom{
+    display: flex;
+    justify-content: center;
+    background-color: #FEFA8E;
+}
+.footer-bottom-sub{
+    width: 400px;
+}

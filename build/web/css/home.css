@@ -96,6 +96,13 @@ body {
     font-size: 20px;
 }
 
+.sub-header a{
+    padding: 16px 0;
+}
+.sub-header a:hover{
+    background-color: #EEEEEE;
+}
+
 .nav-links a {
     margin-right: 15px;
     text-decoration: none;
