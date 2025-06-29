@@ -6,13 +6,12 @@
 
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../design/header.jsp" %>
-<%@ include file="../design/navbar.jsp" %>
 <%@ page import="jakarta.servlet.http.Cookie" %>
 <%@ page import="jakarta.servlet.http.HttpServletRequest" %>
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/image/logo.png">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Blog</title>
         <link rel="stylesheet" href="../css/home.css" />
@@ -22,7 +21,8 @@
         <title>Cách trồng gừng không cần đất</title>
     </head>
     <body>
-        
+        <%@ include file="../design/header.jsp" %>
+        <%@ include file="../design/navbar.jsp" %>
         <section class="breadcrumb-section">
             <div class="breadcrumb-container">
                 <ul class="breadcrumb">
@@ -82,7 +82,7 @@
                 </ul>
             </div>
         </section>
-        
+
         <h1 class="article-title title_page">Hướng dẫn cách trồng gừng không cần đất tại nhà dễ làm, sạch sẽ, nhiều củ</h1>
 
         <div class="rte" id="ega-uti-editable-content" data-platform="haravan" data-id="1002680327" data-blog-id="1000291126">

@@ -6,16 +6,15 @@
 
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../design/header.jsp" %>
-<%@ include file="../design/navbar.jsp" %>
 <%@ page import="jakarta.servlet.http.Cookie" %>
 <%@ page import="jakarta.servlet.http.HttpServletRequest" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/image/logo.png">
         <title>Blog</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">  
         <link rel="stylesheet" href="../css/home.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/blog.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -23,6 +22,8 @@
     </head>
 
     <body>
+        <%@ include file="../design/header.jsp" %>
+        <%@ include file="../design/navbar.jsp" %>
         <section class="breadcrumb-section">
             <div class="breadcrumb-container">
                 <ul class="breadcrumb">
@@ -309,7 +310,7 @@
                 </div>							
             </div>              
 
-        <%@ include file="../design/footer.jsp" %>                                    
+            <%@ include file="../design/footer.jsp" %>                                    
     </body> 
 
 </html>       

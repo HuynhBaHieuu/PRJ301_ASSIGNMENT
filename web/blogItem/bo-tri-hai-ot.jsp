@@ -6,13 +6,12 @@
 
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../design/header.jsp" %>
-<%@ include file="../design/navbar.jsp" %>
 <%@ page import="jakarta.servlet.http.Cookie" %>
 <%@ page import="jakarta.servlet.http.HttpServletRequest" %>
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/image/logo.png">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Blog</title>
         <link rel="stylesheet" href="../css/home.css" />
@@ -22,7 +21,8 @@
         <title>Bọ trĩ hại ớt</title>
     </head>
     <body>
-
+        <%@ include file="../design/header.jsp" %>
+        <%@ include file="../design/navbar.jsp" %>
         <section class="breadcrumb-section">
             <div class="breadcrumb-container">
                 <ul class="breadcrumb">
