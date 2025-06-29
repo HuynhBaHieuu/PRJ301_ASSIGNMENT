@@ -6,7 +6,7 @@ body {
     background: #009045;
     color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     padding: 10px 30px;
     align-items: center;
     flex-wrap: wrap;
@@ -21,7 +21,17 @@ body {
     font-weight: bold;
     font-family: cursive sans-serif;
 }
+.logo-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
 .logo img{
+    margin-bottom: 10px;
     width: 50px;
 }
 .search-bar form {
@@ -67,6 +77,18 @@ body {
     display: flex;
     gap: 15px;
 }
+.header-contact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 14px;
+}
+.account:hover{
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px #FFD700);
+    transition: all 0.3s ease;
+}
 
 .header-cart {
     border: solid white 2px;
@@ -74,6 +96,19 @@ body {
     padding: 5px;
     display: flex;
     align-items: center;
+}
+.header-cart a{
+    color: white;
+}
+.header-cart:hover{
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px #FFD700);
+    transition: all 0.3s ease;
+}
+.logout:hover{
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px #FFD700);
+    transition: all 0.3s ease;
 }
 
 .sub-header {
@@ -245,41 +280,53 @@ h1{
     font-weight: bolder;
 }
 
-
-.products{
-    width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;         /* Cho phép xuống dòng */
-    justify-content: left;
-    gap: 24px;
-}
-.product {
-    border: 1px solid #ccc;
-    padding: 0 15px;
-    width: 250px;
-    height: 300px;
-    display: inline-block;
-    text-align: center;
-}
 .products {
+    width: 100%;
+    margin: 0 1.5%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-wrap: wrap;    /* Cho phép xuống dòng */
+    /*    justify-content: space-between;  Căn đều các sản phẩm */
+    gap: 24px; /* Khoảng cách giữa các sản phẩm */
+    box-sizing: border-box; /* Đảm bảo chiều rộng không bị ảnh hưởng bởi padding */
 }
 
 .product {
-    width: 220px;
-    border: 1px solid #ccc;
+    width: calc(25% - 24px); /* Chia đều mỗi sản phẩm chiếm 1/4 chiều rộng */
+    height: 350px; /* Giới hạn chiều cao để các sản phẩm đồng đều */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 12px;
     text-align: center;
     background-color: white;
     border-radius: 6px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
+
 .product img {
-    width: 40%;
-    heigth: 20px;
-    object-fit: contain;
+    width: 40%; /* Đảm bảo ảnh chiếm hết chiều rộng của .product */
+    height: auto; /* Điều chỉnh chiều cao của ảnh theo tỷ lệ */
+    object-fit: contain; /* Đảm bảo ảnh không bị méo */
+}
+
+.product h4 {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.product p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.product a {
+    text-decoration: none;
+    background-color: #009045;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-top: 10px;
 }
 

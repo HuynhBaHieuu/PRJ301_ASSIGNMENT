@@ -12,28 +12,26 @@
     <body>
         <%@ include file="../design/header.jsp" %>
         <%@ include file="../design/navbar.jsp" %>
-        <div class="main-content">
-            <%@ include file="../design/sidebar.jsp" %>
+        <div>  
             <div class="banner-area">
                 <h2 style="text-align: center; margin-top: 30px;">
                     Kết quả tìm kiếm cho: <span style="color: #009045">${searchQuery}</span>
                 </h2>
+            </div>
+            <div class="products">
+                <c:forEach var="product" items="${products}">
+                    <div class="product">
+                        <img src="${pageContext.request.contextPath}/image/${product.imageUrl}" alt="${product.name}">
+                        <h4>${product.name}</h4>
+                        <p>Giá: ${product.price}</p>
+                        <p>${product.description}</p>
+                        <a href="product/productDetail.jsp?id=${product.id}">Chi tiết</a>
+                    </div>
+                </c:forEach>
 
-                <div class="products">
-                    <c:forEach var="product" items="${products}">
-                        <div class="product">
-                            <img src="images/${product.id}.jpg" alt="${product.name}">
-                            <h4>${product.name}</h4>
-                            <p>Giá: ${product.price}</p>
-                            <p>${product.description}</p>
-                            <a href="product/productDetail.jsp?id=${product.id}">Chi tiết</a>
-                        </div>
-                    </c:forEach>
-
-                    <c:if test="${empty products}">
-                        <p style="text-align:center; color:red; width: 100%;">Không tìm thấy sản phẩm nào.</p>
-                    </c:if>
-                </div>
+                <c:if test="${empty products}">
+                    <p style="text-align:center; color:red; width: 100%;">Không tìm thấy sản phẩm nào.</p>
+                </c:if>
             </div>
         </div>
     </body>

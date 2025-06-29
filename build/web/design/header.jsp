@@ -10,34 +10,43 @@
 <html>
     <!-- Header -->
         <div class="header">
-            <div class="logo"><img src="${pageContext.request.contextPath}/image/logo.png" alt="alt"/><span>Nông Sản Tương Lai</span></div>
+            <div class="logo">
+                <a href="../home" class="logo-link">
+                <img src="${pageContext.request.contextPath}/image/logo.png" alt="alt"/>
+                <span>Nông Sản Tương Lai</span>
+                </a>
+            </div>
             <div class="search-bar">
-                <form action="search" method="get">
+                <form action="${pageContext.request.contextPath}/search" method="get">
                     <input type="text" name="query" placeholder="Tìm sản phẩm..." />
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
             <div class="header-icons">
-                <div><img src="//theme.hstatic.net/1000269461/1000985512/14/phone-icon.png?v=2157" width="30" height="30" class="mr-3 align-self-center" alt="phone-icon"> 
+                <div class="header-contact">
                     <div>
-                        Gọi mua hàng<br>
-                        0829495069
+                        <img src="//theme.hstatic.net/1000269461/1000985512/14/phone-icon.png?v=2157" width="30" height="30" class="mr-3 align-self-center" alt="phone-icon"> 
+                        <div>
+                            Gọi mua hàng<br>
+                            0829495069
+                        </div>
                     </div>
-                </div>
-                <div><img src="//theme.hstatic.net/1000269461/1000985512/14/address-icon.png?v=2157" width="30" height="30" class="mr-3 align-self-center" alt="phone-icon"> 
                     <div>
-                        Hệ thống<br>
-                        cửa hàng
+                        <img src="//theme.hstatic.net/1000269461/1000985512/14/address-icon.png?v=2157" width="30" height="30" class="mr-3 align-self-center" alt="phone-icon"> 
+                        <div>
+                            Hệ thống<br>
+                            cửa hàng
+                        </div>
                     </div>
                 </div>
                              
                 <%                   
                     User currentUser = (User) session.getAttribute("user");
                 %>
-                <a href="<%= (currentUser != null) ? "../user/editUser2.jsp" : "../login.jsp"%>" style="text-decoration: none; color: white;">
+                <a href="<%= (currentUser != null) ? "../editProfile" : "../login.jsp"%>" style="text-decoration: none; color: white;">
                      <div>
                         <img src="//theme.hstatic.net/1000269461/1000985512/14/account-icon.png?v=2157" width="30" height="30" alt="account_icon" class="mr-3 align-self-center">
-                        <div>
+                        <div class="account">
                             Tài khoản<br>
                             <%= (currentUser != null) ? currentUser.getUsername() : "Đăng nhập"%>
                         </div>
@@ -47,7 +56,7 @@
                 <div class="header-cart"><img src="//theme.hstatic.net/1000269461/1000985512/14/cart-icon.png?v=2157" width="30" height="30" alt="cart_icon">
                     <a href="<%= request.getContextPath()%>/cart/cart2.jsp">Giỏ hàng</a><br><br>
                 </div>
-                <div><a href="logout" style="font-size: 25px; color:white;">Đăng xuất</a></div>
+                <div class="logout"><a href="../logout" style="font-size: 25px; color:white;">Đăng xuất</a></div>
             </div>
         </div>
 </html>

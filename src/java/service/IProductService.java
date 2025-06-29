@@ -17,9 +17,9 @@ public interface IProductService {
     void addProduct(Product pro) throws SQLException;
 
     Product getProductById(int id);
-    
+
     List<Product> getProductsByCategoryId(int categoryId);
-    
+
     List<Product> getAllProducts();
 
     List<Product> searchProducts(String query) throws SQLException;
@@ -27,4 +27,6 @@ public interface IProductService {
     void removeProduct(int id, boolean status) throws SQLException;
 
     boolean modifyProduct(Product pro) throws SQLException;
+
+    void updateStock(int productId, int newStock);
 }

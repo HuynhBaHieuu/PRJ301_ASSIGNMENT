@@ -22,7 +22,7 @@ import java.sql.Date;
  */
 public class UserDAO implements IUserDAO {
 
-    private static final String LOGIN2 = "SELECT id, userName, role, status FROM [Users] WHERE userName=? AND password=?";
+    private static final String LOGIN2 = "SELECT * FROM [Users] WHERE userName=? AND password=?";
     private static final String REGISTER = "INSERT INTO Users (username, email, country, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String INSERT_USER = "INSERT INTO Users (username, email, country, role, status, password, dob, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM Users WHERE id = ?";
@@ -43,12 +43,17 @@ public class UserDAO implements IUserDAO {
             if (rs.next()) {
                 int id = rs.getInt("id");
                 String user = rs.getString("userName");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
                 String role = rs.getString("role");
                 boolean status = rs.getBoolean("status");
-                if(!status){
+                String pass = rs.getString("password");
+                Date dob = rs.getDate("dob");
+                String phone = rs.getString("phone");
+                if (!status) {
                     return null;
                 }
-                 us = new User(id, user, role);
+                us = new User(id, user, email, country, role, pass, dob, phone);
             }
 
         } catch (Exception e) {
@@ -57,7 +62,7 @@ public class UserDAO implements IUserDAO {
 
         return us;
     }
-    
+
     @Override
     public void register(User user) throws SQLException {
         try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(REGISTER)) {

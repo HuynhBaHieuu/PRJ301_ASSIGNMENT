@@ -27,6 +27,61 @@ import service.CategoryService;
  *
  * @author Admin
  */
+//@WebServlet(name = "HomeSerlvet", urlPatterns = {"/home"})
+//public class HomeSerlvet extends HttpServlet {
+//
+//    private static final long serialVersionUID = 1L;
+//    private ProductService productService;
+//    private CategoryService categoryService;
+//
+//    @Override
+//    public void init() {
+//        productService = new ProductService();
+//        categoryService = new CategoryService();
+//    }
+//
+//    @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        // Kiểm tra session và role của người dùng
+//        HttpSession session = request.getSession();
+//        User user = (User) session.getAttribute("user");
+//
+//        // Lấy danh sách sản phẩm từ cơ sở dữ liệu
+//        //        List<Product> listProduct = productService.getAllProducts();
+//        //        request.setAttribute("products", listProduct); // Truyền sản phẩm vào request
+//        List<Category> categories = categoryService.getAllCategories();
+//        request.setAttribute("categories", categories);
+//
+//        String categoryIdStr = request.getParameter("categoryId");
+//        List<Product> listProduct;
+//
+//        if (categoryIdStr != null && !categoryIdStr.isEmpty()) {
+//            try {
+//                int categoryId = Integer.parseInt(categoryIdStr);
+//                listProduct = productService.getProductsByCategoryId(categoryId);
+//            } catch (NumberFormatException e) {
+//                listProduct = productService.getAllProducts(); // fallback nếu lỗi
+//            }
+//        } else {
+//            listProduct = productService.getAllProducts();
+//        }
+//        Map<Category, List<Product>> groupedProducts = new LinkedHashMap<>();
+//        categories = categoryService.getAllCategories();
+//
+//        for (Category category : categories) {
+//            List<Product> products = productService.getProductsByCategoryId(category.getCategoryId());
+//            groupedProducts.put(category, products);
+//        }
+//
+//        request.setAttribute("groupedProducts", groupedProducts);
+//
+//        request.setAttribute("products", listProduct);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+//        dispatcher.forward(request, response);
+//    }
+//
+//}
 @WebServlet(name = "HomeSerlvet", urlPatterns = {"/home"})
 public class HomeSerlvet extends HttpServlet {
 
@@ -43,16 +98,30 @@ public class HomeSerlvet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Kiểm tra session và role của người dùng
+
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        // Lấy danh sách sản phẩm từ cơ sở dữ liệu
-        //        List<Product> listProduct = productService.getAllProducts();
-        //        request.setAttribute("products", listProduct); // Truyền sản phẩm vào request
-        List<Category> categories = categoryService.getAllCategories();
-        request.setAttribute("categories", categories);
+        // Lấy danh sách category từ session (nếu có)
+        List<Category> categories = (List<Category>) session.getAttribute("categories");
+        if (categories == null) {
+            categories = categoryService.getAllCategories();
+            session.setAttribute("categories", categories);
+        }
 
+        // Lấy groupedProducts từ session (nếu có)
+        Map<Category, List<Product>> groupedProducts =
+                (Map<Category, List<Product>>) session.getAttribute("groupedProducts");
+        if (groupedProducts == null) {
+            groupedProducts = new LinkedHashMap<>();
+            for (Category category : categories) {
+                List<Product> products = productService.getProductsByCategoryId(category.getCategoryId());
+                groupedProducts.put(category, products);
+            }
+            session.setAttribute("groupedProducts", groupedProducts);
+        }
+
+        // Xử lý lọc theo category nếu có tham số categoryId
         String categoryIdStr = request.getParameter("categoryId");
         List<Product> listProduct;
 
@@ -61,24 +130,18 @@ public class HomeSerlvet extends HttpServlet {
                 int categoryId = Integer.parseInt(categoryIdStr);
                 listProduct = productService.getProductsByCategoryId(categoryId);
             } catch (NumberFormatException e) {
-                listProduct = productService.getAllProducts(); // fallback nếu lỗi
+                listProduct = productService.getAllProducts();
             }
         } else {
             listProduct = productService.getAllProducts();
         }
-        Map<Category, List<Product>> groupedProducts = new LinkedHashMap<>();
-        categories = categoryService.getAllCategories();
 
-        for (Category category : categories) {
-            List<Product> products = productService.getProductsByCategoryId(category.getCategoryId());
-            groupedProducts.put(category, products);
-        }
-
-        request.setAttribute("groupedProducts", groupedProducts);
-
+        // Gửi sản phẩm lọc vào request (chỉ request, không cần lưu session)
         request.setAttribute("products", listProduct);
+        request.setAttribute("groupedProducts", groupedProducts); // cho phần hiển thị nhóm
+
+        // Chuyển đến trang home.jsp
         RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
     }
-
 }

@@ -45,6 +45,7 @@ public class CheckoutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
 
+        // Kiểm tra giỏ hàng
         if (cart == null || cart.getItems().isEmpty()) {
             response.sendRedirect("cart/cart2.jsp");
             return;
@@ -59,24 +60,58 @@ public class CheckoutServlet extends HttpServlet {
         int userId = user.getId();
         Double totalPrice = cart.getTotalCost();
 
+        // Kiểm tra tồn kho trước khi cho phép đặt hàng
+        boolean isValid = true;
+        while (isValid) {
+            for (Map.Entry<Integer, CartItem> entry : cart.getItems().entrySet()) {
+                Product product = productService.getProductById(entry.getKey());
+                CartItem item = entry.getValue();
 
-        // Tạo Order mới
+                // Kiểm tra nếu số lượng đặt vượt quá tồn kho
+                if (item.getQuantity() > product.getStock()) {
+                    // Thông báo lỗi về số lượng không đủ
+//                    request.setAttribute("errorMessage", "Sản phẩm '" + product.getName() + "' không đủ hàng trong kho.");
+//                    request.getRequestDispatcher("cart/cart2.jsp").forward(request, response);
+                    session.setAttribute("errorMessage", "Sản phẩm '" + product.getName() + "' không đủ hàng trong kho.");
+                    response.sendRedirect(request.getContextPath() + "/cart/cart2.jsp");
+                    return;  // Dừng quá trình đặt hàng và yêu cầu nhập lại
+                }
+            }
+            isValid = false;  // Nếu không có sản phẩm nào vượt quá số lượng tồn kho, thoát khỏi vòng lặp
+        }
+
+        // Tạo đơn hàng mới
         Order order = new Order(userId, totalPrice, "Pending");
 
         try {
-            orderService.addOrder(order);  // insert vào bảng Orders
+            orderService.addOrder(order);  // Thêm đơn hàng vào bảng Orders
+
+            // Thêm chi tiết đơn hàng và trừ tồn kho
+            for (Map.Entry<Integer, CartItem> entry : cart.getItems().entrySet()) {
+                int productId = entry.getKey();
+                CartItem item = entry.getValue();
+                Product product = productService.getProductById(productId);
+
+                // Thêm chi tiết đơn hàng
+                orderService.addOrderDetail(order.getId(), productId, item.getQuantity(), product.getPrice());
+
+                // Cập nhật tồn kho
+                int newQuantity = product.getStock() - item.getQuantity();
+                productService.updateStock(productId, newQuantity);  // Cập nhật kho
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(CheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);
+            // Nếu có lỗi, gửi người dùng quay lại giỏ hàng với thông báo lỗi
+            request.setAttribute("errorMessage", "Đã xảy ra lỗi khi xử lý đơn hàng. Vui lòng thử lại.");
+            request.getRequestDispatcher("cart/cart2.jsp").forward(request, response);
+            return;
         }
 
-        // Lưu chi tiết đơn hàng (OrderDetails)
-        for (Map.Entry<Integer, CartItem> entry : cart.getItems().entrySet()) {
-            Product product = productService.getProductById(entry.getKey());
-            CartItem item = entry.getValue();
-            orderService.addOrderDetail(order.getId(), entry.getKey(), item.getQuantity(), product.getPrice());
-        }
-
+        // Xóa giỏ hàng sau khi đặt hàng thành công
         session.removeAttribute("cart");
+
+        // Chuyển hướng người dùng đến trang thành công
         response.sendRedirect("cart/success.jsp");
     }
 }

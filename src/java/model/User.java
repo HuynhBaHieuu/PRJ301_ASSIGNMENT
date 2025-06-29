@@ -20,7 +20,7 @@ public class User {
         
     }   
 // Constructor đầy đủ
-
+    
     public User(int id, String username, String email, String country, String role, boolean status, String password, Date dob, String phone, String googleId) {
         this.id = id;
         this.username = username;
@@ -54,11 +54,16 @@ public class User {
         this.password = password;
         this.phone = phone;
     }
-
-    public User(int id, String username, String role) {
+    // checklogin
+    public User(int id, String username, String email, String country, String role, String password, Date dob, String phone) {
         this.id = id;
         this.username = username;
+        this.email = email;
+        this.country = country;
         this.role = role;
+        this.dob = dob;
+        this.password = password;
+        this.phone = phone;
     }
     
     public User(int id,String username, String email, String country, String role) {

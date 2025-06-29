@@ -20,13 +20,16 @@ import model.User;
  */
 public class ProductDAO implements IProductDAO {
 
-    private static final String SELECT_PRODUCTS = "SELECT * FROM Products Where id like ?";
+    private static final String SELECT_PRODUCT = "SELECT * FROM Products Where id like ?";
     private static final String SELECT_CATEGORIES = "SELECT * FROM Products WHERE category_id = ?";
     private static final String INSERT_PRODUCT = "INSERT INTO Products (name, price, description, stock, status, category_id, image_url) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM Products";
     private static final String UPDATE_PRODUCT = "UPDATE Products SET name = ?, price = ?, description = ?, stock = ?, import_date = ?, status = ?, category_id = ?, image_url = ? WHERE id = ?";
     private static final String UPDATE_STATUS = "UPDATE Products SET status = ? WHERE id = ?";
-    private static final String SEARCH_PRODUCT = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?";
+    private static final String SEARCH_PRODUCTS
+            = "SELECT * FROM Products WHERE (name LIKE ? OR description LIKE ?) OR category_id IN ("
+            + "SELECT category_id FROM Products WHERE name LIKE ? OR description LIKE ?)";
+    private static final String UPDATE_STOCK = "UPDATE PRODUCTS SET stock = ? WHERE id = ?";
 
     @Override
     public void insertProduct(Product pro) throws SQLException {
@@ -39,7 +42,7 @@ public class ProductDAO implements IProductDAO {
 //            ptm.setDate(5, pro.getImportDate());
             ptm.setBoolean(5, pro.getStatus());
             ptm.setInt(6, pro.getCategoryId());
-            ptm.setString(7,pro.getImageUrl());
+            ptm.setString(7, pro.getImageUrl());
             ptm.executeUpdate();
         }
     }
@@ -47,7 +50,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public Product selectProduct(int id) {
         Product p = null;
-        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SELECT_PRODUCTS)) {
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SELECT_PRODUCT)) {
 
             ptm.setInt(1, id);
             ResultSet rs = ptm.executeQuery();
@@ -71,7 +74,7 @@ public class ProductDAO implements IProductDAO {
         }
         return p;
     }
-    
+
     public List<Product> getProductsByCategoryId(int categoryId) {
         List<Product> list = new ArrayList<>();
 
@@ -125,12 +128,14 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public List<Product> searchProducts(String query) throws SQLException{
+    public List<Product> searchProducts(String query) throws SQLException {
         List<Product> filteredProducts = new ArrayList<>();
-        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_PRODUCT);) {
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_PRODUCTS);) {
 
             ptm.setString(1, "%" + query + "%");
             ptm.setString(2, "%" + query + "%");
+            ptm.setString(3, "%" + query + "%");
+            ptm.setString(4, "%" + query + "%");
             ResultSet rs = ptm.executeQuery();
             while (rs.next()) {
                 // Lấy dữ liệu từ kết quả truy vấn và tạo đối tượng Product
@@ -139,9 +144,10 @@ public class ProductDAO implements IProductDAO {
                 double price = rs.getDouble("price");
                 String description = rs.getString("description");
                 int stock = rs.getInt("stock");
+                String image = rs.getString("image_url");
 
                 // Thêm sản phẩm vào danh sách kết quả
-                Product product = new Product(id, name, price, description, stock);
+                Product product = new Product(id, name, price, description, stock, image);
                 filteredProducts.add(product);
             }
 
@@ -180,10 +186,23 @@ public class ProductDAO implements IProductDAO {
         return rowUpdated;
     }
 
+    @Override
+    public void updateStock(int productId, int newStock) {
+        boolean rowUpdated;
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(UPDATE_STOCK)) {
+
+            ptm.setInt(1, newStock);
+            ptm.setInt(2, productId);
+            ptm.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         // Instantiate ProductDAO
         ProductDAO productDAO = new ProductDAO();
-
         try {
             // Get all products
             List<Product> products = productDAO.selectAllProducts();

@@ -20,7 +20,7 @@ import model.Category;
 public class CategoryDAO implements ICategoryDAO {
 
     private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM Categories";
-    private static final String SEARCH_CATEGORIES = "SELECT * FROM Categories Where id like ?";
+    private static final String SEARCH_CATEGORIES = "SELECT * FROM Categories Where id = ?";
     private static final String INSERT_CATEGORY = "INSERT INTO Categories (name) VALUES (?)";
     private static final String UPDATE_CATEGORY = "UPDATE Categories SET name = ? WHERE id = ?";
 
@@ -84,7 +84,7 @@ public class CategoryDAO implements ICategoryDAO {
         try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(UPDATE_CATEGORY)) {
 
             ptm.setString(1, cate.getName());
-            ptm.setInt(8, cate.getCategoryId());
+            ptm.setInt(2, cate.getCategoryId());
 
             rowUpdated = ptm.executeUpdate() > 0;
         }

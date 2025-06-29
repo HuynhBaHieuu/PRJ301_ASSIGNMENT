@@ -27,7 +27,7 @@ public class ProductService implements IProductService {
     public Product getProductById(int id) {
         return productDao.selectProduct(id);
     }
-    
+
     public List<Product> getProductsByCategoryId(int categoryId) {
         return productDao.getProductsByCategoryId(categoryId);
     }
@@ -50,5 +50,10 @@ public class ProductService implements IProductService {
     @Override
     public boolean modifyProduct(Product pro) throws SQLException {
         return productDao.updateProduct(pro);
+    }
+
+    @Override
+    public void updateStock(int productId, int newStock) {
+        productDao.updateStock(productId, newStock);
     }
 }

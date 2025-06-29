@@ -13,7 +13,7 @@ public interface IProductDAO {
     public void insertProduct(Product pro) throws SQLException;
 
     public Product selectProduct(int id);
-    
+
     public List<Product> getProductsByCategoryId(int categoryId);
 
     public List<Product> selectAllProducts();
@@ -23,4 +23,6 @@ public interface IProductDAO {
     public void deleteProduct(int id, boolean status) throws SQLException;
 
     public boolean updateProduct(Product pro) throws SQLException;
+
+    public void updateStock(int productId, int newStock);
 }
