@@ -13,6 +13,65 @@
         <%@ include file="../design/header.jsp" %>
         <%@ include file="../design/navbar.jsp" %>
 
+        <section class="breadcrumb-section">
+            <div class="breadcrumb-container">
+                <ul class="breadcrumb">
+                    <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
+                    <li><span class="divider">/</span><span class="current">Chiết khấu</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <style>
+            .breadcrumb-section {
+                padding: 12px 30px;
+                font-family: Arial, sans-serif;
+                border-radius: 6px;
+                margin: 0 30px 20px 30px; /* thẳng hàng với header */
+            }
+
+            .breadcrumb-container {
+                max-width: 1200px;
+                margin-left: 2.7%;
+                margin-top: 1%;
+            }
+
+            .breadcrumb {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                align-items: center;
+                font-size: 16px;
+                color: #333;
+            }
+
+            .breadcrumb li {
+                margin-right: 8px;
+                display: flex;
+                align-items: center;
+            }
+
+            .breadcrumb li a {
+                color: #000000;
+                text-decoration: none;
+            }
+
+            .breadcrumb li a:hover {
+                text-decoration: underline;
+            }
+
+            .breadcrumb .divider {
+                margin: 0 6px;
+                color: #888;
+            }
+
+            .breadcrumb .current {
+                color: #aaa;
+                font-weight: normal;
+            }
+        </style>            
+        
         <div style="margin: 50px 0">
             <div style="width: 1200px;margin: 0 auto;">
                 <p style="font-size: 25px;">Chiết khấu | Nông Sản Tương Lai</p>
