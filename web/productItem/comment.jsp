@@ -22,6 +22,65 @@
 <%@ include file="../design/header.jsp" %>
 <%@ include file="../design/navbar.jsp" %>
 
+<section class="breadcrumb-section">
+            <div class="breadcrumb-container">
+                <ul class="breadcrumb">
+                    <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
+                    <li><span class="divider">/</span><span class="current">Góp ý</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <style>
+            .breadcrumb-section {
+                padding: 12px 30px;
+                font-family: Arial, sans-serif;
+                border-radius: 6px;
+                margin: 0 30px 20px 30px; /* thẳng hàng với header */
+            }
+
+            .breadcrumb-container {
+                max-width: 1200px;
+                margin-left: 2.7%;
+                margin-top: 1%;
+            }
+
+            .breadcrumb {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                align-items: center;
+                font-size: 16px;
+                color: #333;
+            }
+
+            .breadcrumb li {
+                margin-right: 8px;
+                display: flex;
+                align-items: center;
+            }
+
+            .breadcrumb li a {
+                color: #000000;
+                text-decoration: none;
+            }
+
+            .breadcrumb li a:hover {
+                text-decoration: underline;
+            }
+
+            .breadcrumb .divider {
+                margin: 0 6px;
+                color: #888;
+            }
+
+            .breadcrumb .current {
+                color: #aaa;
+                font-weight: normal;
+            }
+        </style>            
+
 <div style="background-color: #F0EBF8;padding: 20px 0;">
     <h1 style="font-size: 35px;color: purple;">Nông Sản Tương Lai ghi nhận ý kiến phản hồi từ Quý khách hàng</h1>
     <div style="width: 800px;margin:0 auto;">
