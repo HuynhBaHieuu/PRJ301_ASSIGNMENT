@@ -33,7 +33,7 @@
     color: #007b00;
 }
 
-/* 💡 QUAN TRỌNG: Hover vào .menu-dropdown thì hiện menu */
+
 .menu-dropdown:hover .category-list {
     display: block;
 }

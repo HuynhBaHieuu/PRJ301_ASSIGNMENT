@@ -9,9 +9,7 @@
 <html>
     <link rel="stylesheet" href="../css/navbar.css" />
     <div class="sub-header">
-        <div class="menu-dropdown">
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i><strong> DANH MỤC SẢN PHẨM</strong>
+        <div class="menu-toggle"><i class="fas fa-bars"></i><strong> DANH MỤC SẢN PHẨM</strong></div>
                 <!--            <ul class="category-list">
                 <c:forEach var="category" items="${sessionScope.categories}">
                     <li><a href="../home?categoryId=${category.categoryId}">${category.name}</a></li>
