@@ -1,7 +1,5 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../design/header.jsp" %>
-<%@ include file="../design/navbar.jsp" %>
 <%@ page import="jakarta.servlet.http.Cookie" %>
 <%@ page import="jakarta.servlet.http.HttpServletRequest" %>
 <!DOCTYPE html>
@@ -9,13 +7,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Danh Mục Sản Phẩm</title>
-        <link rel="stylesheet" href="../css/home.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/allProducts.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css"/>
     </head>
 
     <body>
+        <%@ include file="../design/header.jsp" %>
+        <%@ include file="../design/navbar.jsp" %>
         <section class="breadcrumb-section">
             <div class="breadcrumb-container">
                 <ul class="breadcrumb">

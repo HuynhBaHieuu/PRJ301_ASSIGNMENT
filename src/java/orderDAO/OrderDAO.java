@@ -21,8 +21,8 @@ public class OrderDAO implements IOrderDAO {
     private static final String INSERT_ORDER = "INSERT INTO Orders (user_id, total_price, status) VALUES (?, ?, ?)";
     private static final String INSERT_ORDER_DETAIL = "INSERT INTO OrderDetails (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
     private static final String SELECT_ALL_ORDERS = "SELECT * from Orders";
-    private static final String UPDATE_STATUS = "UPDATE PRODUCT SET status = ? WHERE id = ?";
-    private static final String UPDATE_PRODUCT = "UPDATE PRODUCT SET user_id = ?, order_date = ?, total_price = ?, status = ? WHERE id = ?";
+    private static final String UPDATE_STATUS = "UPDATE Orders SET status = ? WHERE id = ?";
+    private static final String UPDATE_ORDER = "UPDATE Orders SET user_id = ?, total_price = ?, status = ? WHERE id = ?";
 
     @Override
     public Order getOrderById(int id) {
@@ -78,9 +78,8 @@ public class OrderDAO implements IOrderDAO {
     public boolean deleteOrder(int id) throws SQLException {
         boolean rowUpdated = false;
         try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(UPDATE_STATUS)) {
-            ps.setString(1, "Paid");
+            ps.setInt(1, 1); // 1 = Paid
             ps.setInt(2, id);
-            ps.executeUpdate();
             rowUpdated = ps.executeUpdate() > 0;
         }
         return rowUpdated;
@@ -89,13 +88,12 @@ public class OrderDAO implements IOrderDAO {
     @Override
     public boolean updateOrder(Order orderObj) throws SQLException {
         boolean rowUpdated;
-        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(UPDATE_PRODUCT)) {
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(UPDATE_ORDER)) {
 
             ptm.setInt(1, orderObj.getUserId());
-            ptm.setDate(5, orderObj.getOrderDate());
-            ptm.setDouble(3, orderObj.getTotalPrice());
-            ptm.setString(4, orderObj.getStatus());
-            ptm.setInt(5, orderObj.getId());
+            ptm.setDouble(2, orderObj.getTotalPrice());
+            ptm.setInt(3, Integer.parseInt(orderObj.getStatus()));
+            ptm.setInt(4, orderObj.getId());
 
             rowUpdated = ptm.executeUpdate() > 0;
         }
@@ -109,7 +107,7 @@ public class OrderDAO implements IOrderDAO {
 
             ptm.setInt(1, order.getUserId());
             ptm.setDouble(2, order.getTotalPrice());
-            ptm.setString(3, order.getStatus());
+            ptm.setInt(3, Integer.parseInt(order.getStatus()));
             ptm.executeUpdate();
 
             ResultSet rs = ptm.getGeneratedKeys();

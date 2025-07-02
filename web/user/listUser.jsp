@@ -1,62 +1,97 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:set var="active" value="users" scope="request"/>
+<jsp:include page="../design/adminHeader.jsp"/>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-    <head>
-        <title>User Management Application</title>
-    </head>
-    <body>
-    <center>
-        <h1>User Management</h1>
-        <h2>
-            <a href="users?action=create">Add New User</a>
-        </h2>
-        <h3><a href="products">List All Products</a></h3>
-        <h3><a href="categories">List All Categories</a></h3>
-    </center>
-    <div align="center">
-        <table border="1" cellpadding="5">
-            <caption><h2>List of Users</h2></caption>
-            <tr>
-                <th>ID</th>
-                <th>userName</th>
-                <th>Email</th>
-                <th>Country</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Phone</th>
-<!--                <th>GoogleId</th>-->
-                <th>Actions</th>
-            </tr>
-            <c:forEach var="user" items="${listUser}">
-                <tr>
-                    <td><c:out value="${user.id}"/></td>
-                    <td><c:out value="${user.username}"/></td>
-                    <td><c:out value="${user.email}"/></td>
-                    <td><c:out value="${user.country}"/></td>
-                    <td><c:out value="${user.role}"/></td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${user.status}">
-                                Active
-                            </c:when>
-                            <c:otherwise>
-                                Inactive
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td><c:out value="${user.phone}"/></td>
-<!--                    <td><c:out value="${user.googleId}"/></td>-->
-                    <td>
-                        <a
-                            href="users?action=edit&id=${user.id}">Edit</a>
-                        <a
-                            href="users?action=delete&id=${user.id}">Delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>User Management</h2>
+        <a href="users?action=create" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i> Add New User
+        </a>
     </div>
-</body>
-</html>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Country</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:set var="pageSize" value="10"/>
+                        <c:set var="currentPage" value="${param.page != null ? param.page : 1}"/>
+                        <c:set var="start" value="${(currentPage - 1) * pageSize}"/>
+                        <c:set var="end" value="${start + pageSize}"/>
+                        <c:set var="totalItems" value="${fn:length(listUser)}"/>
+                        <c:set var="totalPages" value="${(totalItems + pageSize - 1) / pageSize}"/>
+                        <c:forEach var="user" items="${listUser}" varStatus="status">
+                            <c:if test="${status.index >= start && status.index < end}">
+                                <tr>
+                                    <td><c:out value="${user.id}"/></td>
+                                    <td><c:out value="${user.username}"/></td>
+                                    <td><c:out value="${user.email}"/></td>
+                                    <td><c:out value="${user.country}"/></td>
+                                    <td><c:out value="${user.role}"/></td>
+                                    <td>
+                                        <span class="badge bg-${user.status ? 'success' : 'danger'}">
+                                            <c:choose>
+                                                <c:when test="${user.status}">Active</c:when>
+                                                <c:otherwise>Inactive</c:otherwise>
+                                            </c:choose>
+                                        </span>
+                                    </td>
+                                    <td><c:out value="${user.phone}"/></td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="users?action=edit&id=${user.id}" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="users?action=delete&id=${user.id}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center mt-3">
+                    <nav>
+                        <ul class="pagination">
+                            <c:if test="${currentPage > 1}">
+                                <li class="page-item">
+                                    <a class="page-link" href="users?page=${currentPage - 1}">Previous</a>
+                                </li>
+                            </c:if>
+                            <c:forEach var="i" begin="1" end="${totalPages}">
+                                <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                    <a class="page-link" href="users?page=${i}">${i}</a>
+                                </li>
+                            </c:forEach>
+                            <c:if test="${currentPage < totalPages}">
+                                <li class="page-item">
+                                    <a class="page-link" href="users?page=${currentPage + 1}">Next</a>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<jsp:include page="../design/adminFooter.jsp"/>

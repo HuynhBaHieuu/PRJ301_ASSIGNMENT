@@ -1,28 +1,30 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-    <head>
-        <title>Create New Category</title>
-    </head>
-    <body>
-    <center>
-        <h1>Category Management</h1>
-        <h2><a href="categories">List All Categories</a></h2>
-    </center>
-    <div align="center">
-        <form method="post" action="categories?action=create">
-            <table border="1" cellpadding="5">
-                <caption><h2>Add New Category</h2></caption>
-                <tr>
-                    <th>Category Name:</th>
-                    <td><input type="text" name="name" id="name" size="45" required/></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <input type="submit" value="Save"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:set var="active" value="categories" scope="request"/>
+<jsp:include page="../design/adminHeader.jsp"/>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0"><i class="fas fa-plus"></i> Add New Category</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="categories?action=create">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Category Name:</label>
+                            <input type="text" class="form-control" name="name" id="name" required />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+                            <a href="categories" class="btn btn-secondary ms-2"><i class="fas fa-arrow-left"></i> Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+</div>
+
+<jsp:include page="../design/adminFooter.jsp"/>

@@ -26,7 +26,7 @@
         <!-- Header -->
         <div class="header">
             <div class="logo">
-                <a href="home" class="logo-link">
+                <a href="${pageContext.request.contextPath}/home" class="logo-link">
                     <img src="image/logo.png" alt="alt"/>
                     <span>Nông Sản Tương Lai</span>
                     <a/>
@@ -78,7 +78,7 @@
         <div class="sub-header">
             <div class="menu-toggle"><i class="fas fa-bars"></i><strong> DANH MỤC SẢN PHẨM</strong></div>
             <div class="nav-links">
-                <a href="${pageContext.request.contextPath}/productItem/allProducts.jsp">SẢN PHẨM</a>
+                <a href="${pageContext.request.contextPath}/sp">SẢN PHẨM</a>
                 <a href="${pageContext.request.contextPath}/productItem/checkOrder.jsp">KIỂM TRA ĐƠN HÀNG</a>
                 <a href="${pageContext.request.contextPath}/productItem/blog.jsp">BLOG</a>
                 <a href="${pageContext.request.contextPath}/productItem/shippingPolicy.jsp">CHÍNH SÁCH VẬN CHUYỂN</a>

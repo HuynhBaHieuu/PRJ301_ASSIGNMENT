@@ -81,7 +81,7 @@ public class CheckoutServlet extends HttpServlet {
         }
 
         // Tạo đơn hàng mới
-        Order order = new Order(userId, totalPrice, "Pending");
+        Order order = new Order(userId, totalPrice, "0");
 
         try {
             orderService.addOrder(order);  // Thêm đơn hàng vào bảng Orders

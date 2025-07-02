@@ -16,7 +16,7 @@
                 </c:forEach>
             </ul>-->
             <div class="nav-links">
-                <a href="${pageContext.request.contextPath}/productItem/allProducts.jsp">SẢN PHẨM</a>
+                <a href="${pageContext.request.contextPath}/sp">SẢN PHẨM</a>
                 <a href="${pageContext.request.contextPath}/productItem/checkOrder.jsp">KIỂM TRA ĐƠN HÀNG</a>
                 <a href="${pageContext.request.contextPath}/productItem/blog.jsp">BLOG</a>
                 <a href="${pageContext.request.contextPath}/productItem/shippingPolicy.jsp">CHÍNH SÁCH VẬN CHUYỂN</a>

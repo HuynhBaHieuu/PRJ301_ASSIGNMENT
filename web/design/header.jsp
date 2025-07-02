@@ -11,7 +11,7 @@
     <!-- Header -->
         <div class="header">
             <div class="logo">
-                <a href="../home" class="logo-link">
+                <a href="${pageContext.request.contextPath}/home" class="logo-link">
                 <img src="${pageContext.request.contextPath}/image/logo.png" alt="alt"/>
                 <span>Nông Sản Tương Lai</span>
                 </a>
@@ -56,7 +56,7 @@
                 <div class="header-cart"><img src="//theme.hstatic.net/1000269461/1000985512/14/cart-icon.png?v=2157" width="30" height="30" alt="cart_icon">
                     <a href="<%= request.getContextPath()%>/cart/cart2.jsp">Giỏ hàng</a><br><br>
                 </div>
-                <div class="logout"><a href="../logout" style="font-size: 25px; color:white;">Đăng xuất</a></div>
+                <div class="logout"><a href="${pageContext.request.contextPath}/logout" style="font-size: 25px; color:white;">Đăng xuất</a></div>
             </div>
         </div>
 </html>
