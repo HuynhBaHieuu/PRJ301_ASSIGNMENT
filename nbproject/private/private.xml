@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/web/category/listCategory.jsp</file>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/web/user/listUser.jsp</file>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ_Project/PRJ301_ASSIGNMENT/src/java/constant/Iconstant.java</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/web/productItem/checkOrder.jsp</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/src/java/controller/CheckOrderServlet.java</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/web/css/checkOrder.css</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/src/java/orderDAO/CheckOrderDao.java</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/src/java/model/Order.java</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/src/java/orderDAO/OrderDAO.java</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/src/java/controller/CartServlet.java</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/src/java/model/CartItem.java</file>
+            <file>file:/C:/Users/Administrator/OneDrive/Dokumen/GitHub/PRJ301_ASSIGNMENT/PRJ301_ASSIGNMENT/src/java/model/OrderDetailInfo.java</file>
         </group>
     </open-files>
 </project-private>

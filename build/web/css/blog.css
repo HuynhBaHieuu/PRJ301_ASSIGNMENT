@@ -1,0 +1,117 @@
+
+.breadcrumb-section {
+    padding: 12px 30px;
+    font-family: Arial, sans-serif;
+    border-radius: 6px;
+    margin: 0 30px 20px 30px; /* thẳng hàng với header */
+}
+
+.breadcrumb-container {
+    max-width: 1200px;
+    margin-left: 3.2%;
+    margin-top: 1.2%;
+}
+
+.breadcrumb {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+}
+
+.breadcrumb li {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.breadcrumb li a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb .divider {
+    margin: 0 6px;
+    color: #888;
+}
+
+.breadcrumb .current {
+    color: #aaa;
+    font-weight: normal;
+}
+
+.blog li {
+    font-size: 30px;
+    list-style-type: none;
+    padding: 0;
+    margin-left: 3.7%;
+    margin-bottom: 0;
+}
+
+.blogwp {
+    padding: 0;
+    margin-bottom: 30px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content_blog {
+    margin-top: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.blogwp:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.content_blog h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.content_blog h3 a {
+    text-decoration: none;
+    color: #000;
+}
+
+.content_blog h3 a:hover {
+    color: #00a651; /* xanh lá nổi bật */
+}
+
+.art-summary {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.text-muted {
+    font-size: 13px;
+    color: #999 !important;
+}
+
+.button_custome_35 {
+    color: #00a651;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button_custome_35:hover {
+    text-decoration: underline;
+}
