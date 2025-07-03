@@ -8,12 +8,12 @@
 <!DOCTYPE html>
 <html>
     <div class="sidebar">   
-                <ul>
-                    <c:forEach var="category" items="${categories}">
-                        <li>
-                            <a href="home?categoryId=${category.categoryId}">${category.name}</a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
+        <ul>
+            <c:forEach var="category" items="${categories}">
+                <li>
+                    <a href="category-products?categoryId=${category.categoryId}">${category.name}</a>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
 </html>

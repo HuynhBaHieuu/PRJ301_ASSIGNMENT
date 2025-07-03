@@ -14,10 +14,10 @@
         <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/image/logo.png">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Blog</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/home.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <title>Tháng 7 dương lịch trồng rau gì</title>
     </head>
     <body>
