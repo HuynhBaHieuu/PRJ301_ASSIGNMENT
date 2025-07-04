@@ -261,5 +261,6 @@
             © Bản quyền thuộc về Nông Sản Tương Lai - Công ty Cổ Phần P3T 
         </span>
     </div>
+    <jsp:include page="chatbot/chatbot.jsp" />
 </body>
 </html>
