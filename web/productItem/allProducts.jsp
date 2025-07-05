@@ -55,7 +55,6 @@
                 </div>
             </c:forEach>
         </div>
-        3
         <%@ include file="../design/footer.jsp" %>               
     </body>
 

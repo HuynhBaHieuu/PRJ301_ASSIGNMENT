@@ -57,7 +57,7 @@
 
                 <%                    User currentUser = (User) session.getAttribute("user");
                 %>
-                <a href="<%= (currentUser != null) ? "editProfile" : "login.jsp"%>" style="text-decoration: none; color: white;">
+                <a href="<%= (currentUser != null) ? (request.getContextPath() + "/editProfile") : (request.getContextPath() + "/login.jsp")%>" style="text-decoration: none; color: white;">                    
                     <div>
                         <img src="//theme.hstatic.net/1000269461/1000985512/14/account-icon.png?v=2157" width="30" height="30" alt="account_icon" class="mr-3 align-self-center">
                         <div class="account">

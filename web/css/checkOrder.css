@@ -46,15 +46,6 @@
     font-weight: normal;
 }
 
-
-.checkOrder li {
-    font-size: 30px;
-    list-style-type: none;
-    padding: 0;
-    margin-left: 3.7%;
-    margin-bottom: 10%;
-}
-
 .checkOrder-section {
     width: 1170px;
     margin: 50px auto;   
@@ -76,4 +67,3 @@
 #os-show{
     margin-left: 50px;
 }
-

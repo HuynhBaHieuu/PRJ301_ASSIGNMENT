@@ -1,8 +1,3 @@
-<%-- 
-    Document   : checkOrder
-    Created on : Jun 22, 2025, 10:27:28 AM
-    Author     : phung
---%>
 
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

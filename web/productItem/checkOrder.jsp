@@ -1,8 +1,3 @@
-<%-- 
-    Document   : checkOrder
-    Created on : Jun 22, 2025, 10:27:28 AM
-    Author     : phung
---%>
 
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -24,6 +19,7 @@
     <body>
         <!-- Nhúng script của Google reCAPTCHA -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
         <section class="breadcrumb-section">
             <div class="breadcrumb-container">
                 <ul class="breadcrumb">
@@ -31,15 +27,6 @@
                     <li><span class="divider">/</span><span class="current">Kiểm tra đơn hàng</span></li>
                 </ul>
             </div>
-        </section>
-
-        <section class="checkOrder-section">
-            <div class="checkOrder-container">
-                <ul class="checkOrder">
-                    <li>Kiểm tra đơn hàng</li>
-                </ul>
-            </div>
-        </section> 
         </section>
 
                     

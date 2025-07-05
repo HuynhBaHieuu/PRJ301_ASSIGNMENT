@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/chatbot/chatbot.jsp</file>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/chatbot/script.js</file>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/home.jsp</file>
-            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/css/style.css</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/css/checkOrder.css</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/productItem/checkOrder.jsp</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/productItem/allProducts.jsp</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/productItem/blog.jsp</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/css/home.css</file>
+            <file>file:/D:/FPT/Documents/PRJ/ProjectPRJ/PRJ301_ASSIGNMENT/web/css/allProducts.css</file>
         </group>
     </open-files>
 </project-private>
