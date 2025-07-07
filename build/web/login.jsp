@@ -54,7 +54,7 @@
                     <span style="padding:0 10px;color:#FFFFFF;">OR</span>
                     <hr style="display:inline-block; width:40%; vertical-align:middle;">
                 </div>
-                
+
                 <div class="google-btn">
                     <div id="g_id_onload"
                          data-client_id="826663688212-1rv081sttnimf0vbdsdnj70io4on5u9d.apps.googleusercontent.com"
@@ -78,7 +78,7 @@
                 </div>
             </form>
         </div>
-
+        <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
         <script>
             function handleCredentialResponse(response) {
                 // Xử lý response từ Google
@@ -109,7 +109,7 @@
 
                                 // Chuyển hướng sau 1 giây
                                 setTimeout(() => {
-                                    window.location.href = 'home.jsp';
+                                    window.location.href = 'home';
                                 }, 1000);
                             } else {
                                 // Hiển thị thông báo lỗi
