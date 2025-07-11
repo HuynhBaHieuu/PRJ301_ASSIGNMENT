@@ -101,6 +101,37 @@ public class ProductDAO implements IProductDAO {
         return list;
     }
 
+    public List<Product> getProductsByCategoryName(String categoryName) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT p.* FROM Products p "
+                + "JOIN Categories c ON p.category_id = c.id "
+                + "WHERE c.name = ?";
+
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(sql)) {
+
+            ptm.setString(1, categoryName);
+            ResultSet rs = ptm.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getInt("stock"),
+                        rs.getDate("import_date"),
+                        rs.getBoolean("status"),
+                        rs.getInt("category_id"),
+                        rs.getString("image_url")
+                );
+                products.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
     @Override
     public List<Product> selectAllProducts() {
         List<Product> products = new ArrayList<>();
@@ -130,27 +161,28 @@ public class ProductDAO implements IProductDAO {
     @Override
     public List<Product> searchProducts(String query) throws SQLException {
         List<Product> filteredProducts = new ArrayList<>();
-        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_PRODUCTS);) {
+        String searchSql = "SELECT * FROM Products WHERE name LIKE ? OR description LIKE ?";
+
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(searchSql)) {
 
             ptm.setString(1, "%" + query + "%");
             ptm.setString(2, "%" + query + "%");
-            ptm.setString(3, "%" + query + "%");
-            ptm.setString(4, "%" + query + "%");
+
             ResultSet rs = ptm.executeQuery();
             while (rs.next()) {
-                // Lấy dữ liệu từ kết quả truy vấn và tạo đối tượng Product
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                double price = rs.getDouble("price");
-                String description = rs.getString("description");
-                int stock = rs.getInt("stock");
-                String image = rs.getString("image_url");
-
-                // Thêm sản phẩm vào danh sách kết quả
-                Product product = new Product(id, name, price, description, stock, image);
+                Product product = new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getInt("stock"),
+                        rs.getDate("import_date"),
+                        rs.getBoolean("status"),
+                        rs.getInt("category_id"),
+                        rs.getString("image_url")
+                );
                 filteredProducts.add(product);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

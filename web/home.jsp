@@ -1,4 +1,3 @@
-
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
@@ -20,7 +19,68 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="stylesheet" href="css/footer.css"/>
+        <style>
+            /* Thêm CSS cho modal upload */
+            .upload-modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.7);
+            }
 
+            .modal-content {
+                background-color: #fefefe;
+                margin: 10% auto;
+                padding: 20px;
+                width: 60%;
+                max-width: 500px;
+                position: relative;
+                border-radius: 8px;
+            }
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            #fileInput {
+                margin: 15px 0;
+                width: 100%;
+            }
+
+            #uploadButton {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+                margin-top: 10px;
+                border-radius: 4px;
+            }
+
+            #previewContainer {
+                margin-top: 15px;
+                text-align: center;
+                display: none;
+            }
+
+            #previewImage {
+                max-width: 100%;
+                max-height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+        </style>
     </head>
     <body>
         <!-- Header -->
@@ -36,6 +96,9 @@
                     <input type="text" name="query" placeholder="Tìm sản phẩm..." />
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
+                <button id="uploadImageButton" style="background: none; border: none; cursor: pointer; color: white; font-size: 18px; margin-left: 5px;">
+                    <i class="fas fa-camera"></i>
+                </button>
             </div>
             <div class="header-icons">
                 <div class="header-contact">
@@ -74,6 +137,18 @@
             </div>
         </div>
 
+        <!-- Modal upload file -->
+        <div id="uploadModal" class="upload-modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Tải lên ảnh sản phẩm</h3>
+                <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg" />
+                <button id="uploadButton">Tải lên và nhận diện</button>
+                <div id="previewContainer">
+                    <img id="previewImage" />
+                </div>
+            </div>
+        </div>
         <!-- Navbar -->
         <div class="sub-header">
             <div class="menu-toggle"><i class="fas fa-bars"></i><strong> DANH MỤC SẢN PHẨM</strong></div>
@@ -262,5 +337,112 @@
         </span>
     </div>
     <jsp:include page="chatbot/chatbot.jsp" />
+    <script>
+        // JavaScript xử lý upload file
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('uploadModal');
+            const uploadBtn = document.getElementById('uploadImageButton');
+            const closeBtn = document.querySelector('.close');
+            const fileInput = document.getElementById('fileInput');
+            const uploadButton = document.getElementById('uploadButton');
+            const previewContainer = document.getElementById('previewContainer');
+            const previewImage = document.getElementById('previewImage');
+
+            // Mở modal khi click vào nút upload
+            uploadBtn.addEventListener('click', function () {
+                modal.style.display = 'block';
+            });
+
+            // Đóng modal
+            closeBtn.addEventListener('click', function () {
+                modal.style.display = 'none';
+                previewContainer.style.display = 'none';
+                fileInput.value = '';
+            });
+
+            // Khi chọn file, hiển thị preview
+            fileInput.addEventListener('change', function (e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewImage.src = e.target.result;
+                        previewContainer.style.display = 'block';
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+
+            // Xử lý khi nhấn nút tải lên
+            uploadButton.addEventListener('click', function () {
+                if (!fileInput.files || !fileInput.files[0]) {
+                    alert('Vui lòng chọn file ảnh.');
+                    return;
+                }
+
+                const file = fileInput.files[0];
+
+                // Giới hạn kích thước file (2MB)
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('Ảnh quá lớn. Vui lòng chọn ảnh < 2MB.');
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const imageData = e.target.result;
+
+                    // Hiển thị loading
+                    uploadButton.disabled = true;
+                    uploadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+
+                    fetch('${pageContext.request.contextPath}/upload-image', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({image: imageData})
+                    })
+                            .then(response => {
+                                uploadButton.disabled = false;
+                                uploadButton.innerHTML = 'Tải lên và nhận diện';
+
+                                if (!response.ok) {
+                                    return response.text().then(text => {
+                                        try {
+                                            const errorData = JSON.parse(text);
+                                            throw new Error(errorData.error || 'Lỗi không xác định');
+                                        } catch {
+                                            throw new Error(text || `Lỗi HTTP: ${response.status}`);
+                                        }
+                                    });
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data.error) {
+                                    throw new Error(data.error);
+                                }
+
+                                // Chuyển hướng với tham số category
+                                window.location.href = 'searchAI?category=' + encodeURIComponent(data.category);
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Lỗi: ' + error.message);
+                            });
+                };
+
+                reader.readAsDataURL(file);
+            });
+
+            // Đóng modal khi click bên ngoài
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    previewContainer.style.display = 'none';
+                    fileInput.value = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
