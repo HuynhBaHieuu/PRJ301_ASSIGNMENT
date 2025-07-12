@@ -45,7 +45,7 @@
                 </div>
                 <div class="remember-forgot">
                     <label><input type="checkbox" name="remember" <%= (savedUser.isEmpty() ? "" : "checked")%> > Remember Me</label>
-                    <a href="#">Forgot Password</a>
+                    <a href="${pageContext.request.contextPath}/forgotPassword/forgot_password.jsp">Forgot Password</a>
                 </div>
                 <button type="submit" class="btn">Login</button>
 

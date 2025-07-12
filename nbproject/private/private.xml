@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/STUDY/PRJ301/PRJ301_ASSIGNMENT/web/productItem/comment.jsp</file>
+            <file>file:/D:/STUDY/PRJ301/PRJ301_ASSIGNMENT/src/java/controller/SubmitFeedbackServlet.java</file>
+            <file>file:/D:/STUDY/PRJ301/PRJ301_ASSIGNMENT/src/java/feedbackDAO/FeedbackDAO.java</file>
+            <file>file:/D:/STUDY/PRJ301/PRJ301_ASSIGNMENT/src/java/feedbackDAO/IFeedbackDAO.java</file>
+            <file>file:/D:/STUDY/PRJ301/PRJ301_ASSIGNMENT/src/java/model/Feedback.java</file>
+            <file>file:/D:/STUDY/PRJ301/PRJ301_ASSIGNMENT/web/productItem/submitSurvey.jsp</file>
+            <file>file:/D:/STUDY/PRJ301/PRJ301_ASSIGNMENT/web/css/submitSurvey.css</file>
+        </group>
     </open-files>
 </project-private>

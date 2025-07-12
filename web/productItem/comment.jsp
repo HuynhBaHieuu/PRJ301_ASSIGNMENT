@@ -119,7 +119,7 @@
                 </button>
 
                 <!-- Nút xóa có xác nhận -->
-                <a href="#" onclick="resetFormWithConfirmation(event)" style="margin-left: 440px;color: #673AB7; text-decoration: none;">
+                <a href="#" onclick="resetFormWithConfirmation(event)" style="margin-left: 420px;color: #673AB7; text-decoration: none;">
                     Xóa hết câu trả lời
                 </a>
             </form>

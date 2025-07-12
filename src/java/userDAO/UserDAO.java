@@ -63,6 +63,49 @@ public class UserDAO implements IUserDAO {
         return us;
     }
 
+    public User findUserByUsernameOrPhone(String usernameOrPhone) {
+    User user = null;
+    String query = "SELECT * FROM Users WHERE userName = ? OR phone = ?";
+
+    try (Connection con = DBConnection.getConnection(); 
+         PreparedStatement ptm = con.prepareStatement(query)) {
+        
+        ptm.setString(1, usernameOrPhone);
+        ptm.setString(2, usernameOrPhone);
+        ResultSet rs = ptm.executeQuery();
+        
+        if (rs.next()) {
+            user = new User(
+                rs.getInt("id"),
+                rs.getString("username"),
+                rs.getString("email"),
+                rs.getString("country"),
+                rs.getString("role"),
+                rs.getInt("status") == 1,
+                rs.getString("password"),
+                rs.getDate("dob"),
+                rs.getString("phone"),
+                rs.getString("googleId")
+            );
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return user;
+}
+
+    
+    public boolean updatePassword(int userId, String newPassword) throws SQLException {
+    String query = "UPDATE Users SET password = ? WHERE id = ?";
+    try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(query)) {
+        ptm.setString(1, newPassword);
+        ptm.setInt(2, userId);
+        int rowsUpdated = ptm.executeUpdate();
+        return rowsUpdated > 0;
+    }
+}
+
+    
     @Override
     public void register(User user) throws SQLException {
         try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(REGISTER)) {
