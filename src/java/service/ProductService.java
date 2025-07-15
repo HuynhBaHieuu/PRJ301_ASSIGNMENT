@@ -5,7 +5,9 @@
 package service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import model.Product;
 import productDAO.IProductDAO;
 import productDAO.ProductDAO;
@@ -30,6 +32,23 @@ public class ProductService implements IProductService {
 
     public List<Product> getProductsByCategoryId(int categoryId) {
         return productDao.getProductsByCategoryId(categoryId);
+    }
+
+    public List<Product> getSuggestedProductsByCategory(int categoryId, Set<Integer> excludeProductIds, int limit) {
+        List<Product> all = getProductsByCategoryId(categoryId);
+        List<Product> result = new ArrayList<>();
+        for (Product p : all) {
+
+            if ((excludeProductIds == null || !excludeProductIds.contains(p.getId()))) {
+
+                result.add(p);
+
+                if (result.size() >= limit) {
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     @Override

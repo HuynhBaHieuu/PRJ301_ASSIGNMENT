@@ -4,6 +4,7 @@
  */
 package controller;
 
+import jakarta.mail.MessagingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,6 +19,10 @@ import model.Product;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import model.Cart;
 import model.Order;
 import model.User;
@@ -25,6 +30,7 @@ import service.IOrderService;
 import service.IProductService;
 import service.OrderService;
 import service.ProductService;
+import utils.EmailUtil;
 
 /**
  *
@@ -99,7 +105,123 @@ public class CheckoutServlet extends HttpServlet {
                 int newQuantity = product.getStock() - item.getQuantity();
                 productService.updateStock(productId, newQuantity);  // Cập nhật kho
             }
+            //Gợi ý sản phẩm
 
+            Set<Integer> suggestedCategoryIds = new HashSet<>();
+
+            Set<Integer> seenProductIds = new HashSet<>();
+
+            for (CartItem item : cart.getItems().values()) {
+
+                suggestedCategoryIds.add(item.getProduct().getCategoryId());
+
+                seenProductIds.add(item.getProduct().getId());
+
+            }
+
+            List<Product> suggested = new ArrayList<>();
+
+            if (productService instanceof ProductService) {
+
+                ProductService concreteService = (ProductService) productService;
+
+                for (int categoryId : suggestedCategoryIds) {
+
+                    List<Product> candidates = concreteService.getSuggestedProductsByCategory(categoryId, seenProductIds, 10);
+
+                    for (Product p : candidates) {
+
+                        if (!suggested.contains(p)) {
+
+                            suggested.add(p);
+
+                            if (suggested.size() >= 5) {
+
+                                break;
+
+                            }
+
+                        }
+
+                    }
+
+                    if (suggested.size() >= 5) {
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            //Gửi email xác nhận
+            String userEmail = user.getEmail(); // lấy email của user để gửi xác nhận
+
+            String subject = "Xác nhận đơn hàng #" + order.getId();
+
+            // Tạo nội dung chi tiết đơn hàng
+            StringBuilder message = new StringBuilder();
+
+            message.append("<h3>Cửa hàng Nông Sản Tương Lai xin chân thành cảm ơn quý khách đã đặt hàng!</h3>");
+            message.append("Mã đơn hàng: <b>#" + order.getId() + "</b><br>");
+
+            message.append("Chi tiết đơn hàng:<br><br>");
+
+            for (CartItem item : cart.getItems().values()) {
+
+                Product p = item.getProduct();
+
+                message.append("<b>- " + p.getName() + " | SL: " + item.getQuantity() + " | Giá: " + p.getPrice() + " VNĐ</b><br>");
+
+            }
+
+            message.append("<br><h3>👉 Tổng tiền: " + totalPrice + " VNĐ</h3>");
+
+            message.append("Đội ngũ chúng tôi sẽ xử lý đơn hàng của bạn sớm nhất.<br>");
+
+            message.append("Nếu có vấn đề gì thắc mắc, quý khách có thể liên hệ qua SĐT: <b style=\"color:red;\">0829 495 069</b><br><br>");
+
+            message.append("<h3>🛍️ Gợi ý dành riêng cho bạn</h3>");
+
+            message.append("<table>");
+
+            for (Product s : suggested) {
+
+                message.append("<tr>");
+
+//                message.append("<td style='padding: 10px;'>");
+//                String imageBaseUrl = "http://localhost:8080/BoTuoi/image/";
+//                message.append("<img src='" + imageBaseUrl + s.getImageUrl() + "' width='100' height='100' style='object-fit: cover; border-radius: 8px;'/>");
+//                message.append("</td>");
+                message.append("<td style='padding: 10px;'>");
+
+                message.append("<b>" + s.getName() + "</b><br>");
+
+                message.append("Giá: " + s.getPrice() + " VNĐ<br>");
+
+                message.append("<a href=\"http://localhost:8080/BoTuoi/product/productDetail.jsp?id=" + s.getId() + "\">Xem chi tiết</a>");
+
+                message.append("</td>");
+
+                message.append("</tr>");
+
+            }
+
+            message.append("</table><br><br>");
+
+            message.append("Truy cập <a href=\"http://localhost:8080/BoTuoi/login.jsp \">website của chúng tôi</a> để xem thêm các sản phẩm khác.");
+
+            // Gửi email
+            try {
+
+                EmailUtil.sendEmail(userEmail, subject, message.toString());
+
+            } catch (MessagingException e) {
+
+                e.printStackTrace(); // Hoặc log lỗi
+
+            }
         } catch (SQLException ex) {
             Logger.getLogger(CheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);
             // Nếu có lỗi, gửi người dùng quay lại giỏ hàng với thông báo lỗi
