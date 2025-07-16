@@ -28,7 +28,7 @@ public class UserDAO implements IUserDAO {
     private static final String SELECT_USER_BY_ID = "SELECT * FROM Users WHERE id = ?";
     private static final String UPDATE_USER = "UPDATE Users SET username = ?, email = ?, country = ?, role = ?, status = ?, password = ?, dob = ?, phone = ?, googleId = ? WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Users";
-    private static final String SEARCH_EMAILS = "SELECT * FROM Users WHERE email LIKE ?";
+    private static final String SEARCH_EMAILS = "SELECT * FROM Users WHERE email = ?";
     private static final String DELETE_USER = "DELETE FROM Users WHERE id = ?";
     private static final String UPDATE_STATUS = "UPDATE Users SET status = ? WHERE id = ?";
 
@@ -79,11 +79,13 @@ public class UserDAO implements IUserDAO {
 
     public List<User> findByEmail(String email) {
         List<User> users = new ArrayList<>();
-        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement(SEARCH_EMAILS)) {
+        if (email == null || email.trim().isEmpty()) {
+            return users; // tránh tìm tất cả
+        }
+        try (Connection con = DBConnection.getConnection(); PreparedStatement ptm = con.prepareStatement("SELECT * FROM Users WHERE email = ?")) {
 
-            ptm.setString(1, "%" + email + "%");
+            ptm.setString(1, email);
             ResultSet rs = ptm.executeQuery();
-
             while (rs.next()) {
                 User u = new User(
                         rs.getInt("id"),
@@ -99,7 +101,6 @@ public class UserDAO implements IUserDAO {
                 );
                 users.add(u);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
